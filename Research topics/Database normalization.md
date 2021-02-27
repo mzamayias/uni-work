@@ -21,3 +21,11 @@ A non-prime attribute of R is an attribute that does not belong to any candidate
 
 *Source [Wikipedia](https://en.wikipedia.org/wiki/Third_normal_form).*
 ## Example
+### Database in no normal form
+<!-- TODO: Add initial table in no normal form -->
+### Database in 1NF
+<!-- TODO: Change previous table to be in 1NF -->
+### Database in 2NF
+<!-- TODO: Change previous table to be in 2NF -->
+### Database in 3NF
+<!-- TODO: Change previous table to be in 3NF -->
