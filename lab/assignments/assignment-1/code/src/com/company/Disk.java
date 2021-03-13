@@ -14,7 +14,7 @@ public class Disk extends Hardware {
     @Override
     public String toString() {
         // "Disk 0: HW Disk brand: WD 3.0 TB HDD"
-        return "Disk %s: %s brand: %s %s %s".formatted(super.getCounter(), super.toString(), brand, capacity, this.type);
+        return "Disk %s: %s brand: %s %s TB %s".formatted(super.getCounter(), super.toString(), brand, capacity, this.type);
     }
 
     public double getCapacity() {
