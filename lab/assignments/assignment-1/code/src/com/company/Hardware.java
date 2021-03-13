@@ -1,5 +1,3 @@
-package com.company;
-
 public abstract class Hardware {
     String type; // hardware type (computer or disk)
     int counter = 0; // hardware tracker

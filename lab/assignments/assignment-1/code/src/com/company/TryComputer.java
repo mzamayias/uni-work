@@ -1,7 +1,4 @@
-package com.company;
-
 public class TryComputer {
-
     public static void main(String[] args) {
         Disk[] eightDisks = new Disk[8];
         eightDisks[0] = new Disk("Samsung", "SSD SATA III", 0.5);
@@ -20,6 +17,5 @@ public class TryComputer {
         System.out.println(computer.toString());
         computer.printDisks();
         System.out.println("Disk Capacity: %s".formatted(computer.totalDiskCapacity()));
-//        System.out.println("Total Hardware objects generated: %s".formatted());
     }
 }

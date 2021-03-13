@@ -1,5 +1,3 @@
-package com.company;
-
 public class Disk extends Hardware {
     private String brand; // disk brand
     private String type; // disk type (hdd or ssd)

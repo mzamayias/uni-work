@@ -1,8 +1,3 @@
-package com.company;
-
-import java.util.Arrays;
-import java.util.List;
-
 public class Computer extends Hardware {
     private String brand; // computer brand
     private String cpu; // computer cpu
