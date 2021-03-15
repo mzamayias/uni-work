@@ -16,6 +16,7 @@ public class TryComputer {
         computer.setMemory(32);
         System.out.println(computer.toString());
         computer.printDisks();
-        System.out.println("Disk Capacity: %s".formatted(computer.totalDiskCapacity()));
+        System.out.printf("Disk Capacity: %s%n", computer.totalDiskCapacity());
+        System.out.printf("Total Hardware objects generated: %s%n", computer.getCounter() + eightDisks.length);
     }
 }
