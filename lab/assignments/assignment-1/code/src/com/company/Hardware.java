@@ -1,9 +1,10 @@
 public abstract class Hardware {
-    String type; // hardware type (computer or disk)
-    int counter = 0; // hardware tracker
+    private final String type; // hardware type (computer or disk)
+    private int counter = 0; // hardware tracker
 
     public Hardware(String type) {
         this.type = type;
+        this.counter++;
     }
 
     public int getCounter() {
