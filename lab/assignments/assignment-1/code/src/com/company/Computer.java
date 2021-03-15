@@ -1,14 +1,13 @@
 public class Computer extends Hardware {
-    private String brand; // computer brand
-    private String cpu; // computer cpu
+    private final String brand; // computer brand
+    private final String cpu; // computer cpu
     private int memory; // computer memory in gb
-    private Disk[] disks = new Disk[10]; // disk array of size 10
+    private final Disk[] disks = new Disk[10]; // disk array of size 10
 
     public Computer(String brand, String cpu) {
         super("Computer");
         this.brand = brand;
         this.cpu = cpu;
-        super.counter++;
     }
 
     @Override
@@ -26,8 +25,9 @@ public class Computer extends Hardware {
     }
 
     public void printDisks() {
-        for (Disk disk : disks) {
-            if (disk != null) System.out.println(disk.toString());
+        for (int diskIndex = 0; diskIndex < disks.length; diskIndex++) {
+            if (disks[diskIndex] != null)
+                System.out.println("Disk %s: %s".formatted(diskIndex, disks[diskIndex].toString()));
         }
     }
 
