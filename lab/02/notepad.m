@@ -25,7 +25,7 @@ f2 = plot_figure(2, n, h, [0:10:100], [-1:0.1:1]);
 % >>> Lab_04_Students.pdf - Page 23 of 32
 % y(n) = -0.9 * y(n-1) + x(n)
 % h(n) = -0.9 * h(n-1) + d(n)
-d = @(n) n == 0;
+d = @(n) n == 0; % resolves warning: warning: inline is obsolete; use anonymous functions instead
 h(1) = 1;
 for n = 2:101
     h(n) = -0.9 * h(n - 1) + d(n);
