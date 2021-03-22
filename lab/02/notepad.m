@@ -12,3 +12,5 @@ y = term0 + term1 + term2 + term3;
 f1 = plot_figure(1, x, y, x, [0:0.1:1.5]);
 waitfor(f1);
 % <<<
+
+
