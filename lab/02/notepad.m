@@ -15,13 +15,15 @@ y = term0 + term1 + term2 + term3;
 % >>> Lab_04_Students.pdf - Page 25 of 32
 % y(n) = -0.9 * y(n-1) + x(n)
 % h(n) = -0.9 * h(n-1) + d(n)
-n = 0:100;
-a = [1 0.9]; % h coefficients
-b = [1 0]; % d coefficients
+% h(n) = 0*
+n = 0:20;
+a = [1 0 0 0 0 0]; % h coefficients
+b = [0 2 4 6 4 2]; % d coefficients
 h = filter(b, a, delta_function(0, n));
-% f2 = plot_figure(2, n, h, [0:10:100], [-1:0.1:1]);
+f2 = plot_figure(2, n, h, [0:1:5], [0:1:10]);
+waitfor(f2);
 % <<<
-
+quit();
 % >>> Lab_04_Students.pdf - Page 23 of 32
 % y(n) = -0.9 * y(n - 1) + x(n)
 % h(n) = -0.9 * h(n - 1) + d(n)
