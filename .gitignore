@@ -1,2 +1,8 @@
 .vscode/settings.json
 .DS_Store
+.idea/.gitignore
+.idea/misc.xml
+.idea/modules.xml
+.idea/uni-work.iml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
