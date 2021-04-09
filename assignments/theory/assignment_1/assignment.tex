@@ -9,14 +9,17 @@
 \usepackage{ragged2e}
 \usepackage{geometry} % to change the page dimensions
 \usepackage{graphicx} % support the \includegraphics command and options
-% \usepackage[indent]{parskip} % Activate to begin paragraphs with an empty
-% line rather than an indent
+% \usepackage[indent]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{booktabs} % for much better looking tables
 \usepackage{array} % for better arrays (eg matrices) in maths
-\usepackage{paralist} % very flexible & customisable lists (eg. 
-% enumerate/itemize, etc.)
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
 \usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
+
+\setlength{\headheight}{30pt}
+\addtolength{\topmargin}{-15pt}
 
 \geometry{a4paper} % or letterpaper (US) or a5paper or....
 \geometry{margin=2.5cm} % for example, change the margins to 2
@@ -26,11 +29,13 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\setlength{\headheight}{30pt}
-\addtolength{\topmargin}{-15pt}
-\rhead{Εργασία 1}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{\thepage}
+\rhead{\rightmark}
 \lhead{Διαχείρηση Έργων Πληροφορικής}
 \rfoot{\thepage}
+
+\setlist{nosep}
 
 % \setlength{\parindent}{0.5em}
 % \setlength{\parskip}{0em}
@@ -51,7 +56,8 @@
 \end{titlepage}
 
 \begin{abstract}
-    Η παρούσα αναφορά πρόκειτα για μία σύντομη και περιεκτική βιβλιογραφική επισκόπηση των μεθοδολογιών διαχείρισης έργων, \textbf{PMBOK}, \textbf{PRINCE2} και \textbf{PM}\boldmath{$^2$}.
+    Η παρούσα αναφορά πρόκειτα για μία σύντομη και περιεκτική βιβλιογραφική επισκόπηση των μεθοδολογιών διαχείρισης έργων, \textbf{PMBOK},
+    \textbf{PRINCE2} και \textbf{PM}\boldmath{$^2$}.
     Πιο συγκεκριμένα, ακολουθεί:
     \begin{enumerate}
         \item Περιγραφή των αρχών της εκάστοτε μεθοδολογίας.
@@ -63,16 +69,54 @@
 
 \newpage
 
-\section{Περιγραφή μεθοδολογιών}
-\subsection{PMBOK}
+\section{Περιγραφή μεθοδολογιών}\label{methods}
+\newpage\subsection{Η μεθοδολογία PMBOK}\label{method_pmbok}
+Η μεθοδολογία PMBOK (Project Management Body Οf Knowledge), αποτελούμενη από διεργασίες, εργαλεία, τεχνικές και καλές πρακτικές, είναι ένα σύνολο γνώσης στο επιστημονικό πεδίο Διαχείριση Έργων Πληροφορικής. Είναι ένα πρότυπο διεθνώς αναγνωρισμένο, τόσο από το IEEE (Institute of Electrical and Electronics Engineers) όσο και από το ANSI (American National Standards Institute). Η PMBOK αναγνωρίζει 5 βασικές ομάδες διεργασιών (process groups) και 10 περιοχές γνώσης (knowledge areas) και οι αρχές αυτής εφαρμόζονται της μεθοδολογίας σε εργασίες (projects), ανάπτυξη λογισμικού (software development) και διάφορες άλλες λειτουργίες (operations). \par
+{\parindent0pt
+    Οι 5 ομάδες διεργασιών:
+    \begin{enumerate}
+        \item Έναρξης (Initiating)
+        \item Προγραμματισμού (Planning)
+        \item Εκτέλεσης (Execution)
+        \item Ελέγχου (Controlling)
+        \item Τερματισμού (Closing)
+    \end{enumerate}
+    Οι 10 περιοχές γνώσης:
+    \begin{enumerate}
+        \item Ενοποίηση του έργου
+        \item Διαχείριση αντικειμένου εργασιών έργου
+        \item Διαχείριση χρόνου έργου
+        \item Διαχείριση κόστους έργου
+        \item Διαχείριση ποιότητας έργου
+        \item Διαχείριση ανθρωπίνων πόρων έργου
+        \item Διαχείριση επικοινωνίας έργου
+        \item Διαχείριση κινδύνων έργου
+        \item Διαχείριση προμηθειών έργου
+        \item Διαχείριση συμμετεχόντων
+    \end{enumerate}
+}
+% https://en.wikipedia.org/wiki/Project_Management_Body_of_Knowledge
+% https://repository.kallipos.gr/bitstream/11419/2262/3/06_kefalaio6.pdf
 
-\subsection{PRINCE2}
+% https://www.slideshare.net/CTESolutions/prince2-pmbok-comparison-demystified-29846454
 
-\subsection{PM\texorpdfstring{$^2$}{}}
+\newpage\subsection{Η μεθοδολογία PRINCE2}\label{method_prince2}
 
-\section{Συγκριτική αξιολόγηση μεθοδολογιών}
 
-\section{Βιβλιογραφία}
+\newpage\subsection{Η μεθοδολογία PM\texorpdfstring{$^2$}{}}\label{method_pm2}
+
+\newpage\section{Συγκριτική αξιολόγηση μεθοδολογιών}
+
+\newpage\section{Βιβλιογραφία}
+\subsection{\texorpdfstring{\hyperref[methods]{Περιγραφή μεθοδολογιών}}{}}
+\begin{itemize}
+    \item \href{https://en.wikipedia.org/wiki/Project_Management_Body_of_Knowledge}{Wikipedia: PMBOK}
+    \item \href{https://repository.kallipos.gr/bitstream/11419/2262/3/06_kefalaio6.pdf}{Αποθετήριο «Κάλλιπος»: Διαχείρηση Έργων Πληροφορικής}
+    \item \href{https://dione.lib.unipi.gr/xmlui/bitstream/handle/unipi/8488/Fragkos_Georgios.pdf}{Βιβλιοθήκη Πανεπιστημίου Πειραιώς «Διώνη»: ΣΥΓΚΡΙΤΙΚΗ ΑΞΙΟΛΟΓΗΣΗ ΜΕΘΟΔΟΛΟΓΙΩΝ ΔΙΑΧΕΙΡΙΣΗΣ ΕΡΓΩΝ}
+\end{itemize}
+\subsubsection{\texorpdfstring{\hyperref[method_pmbok]{Η μεθοδολογία PMBOK}}{}}
+\subsubsection{\texorpdfstring{\hyperref[method_prince2]{Η μεθοδολογία PRINCE2}}{}}
+\subsubsection{\texorpdfstring{\hyperref[method_pm2]{Η μεθοδολογία PM$^2$}}{}}
 
 
 \end{document}
