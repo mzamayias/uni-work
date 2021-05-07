@@ -1,0 +1,84 @@
+% !TEX TS-program = XeTeX
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = gr-GR
+
+\documentclass[12pt]{turabian-researchpaper}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+% \usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{geometry} % to change the page dimensions
+% \usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[indent]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+% \usepackage{booktabs} % for much better looking tables
+% \usepackage{array} % for better arrays (eg matrices) in maths
+% \usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{fancyhdr}
+% \usepackage{multicol}
+% \usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\headheight}{30pt}
+\addtolength{\topmargin}{-15pt}
+
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+\geometry{margin=2.5cm} % for example, change the margins to 2.5cm all round
+\setmainfont{GFS Didot}
+\setdefaultlanguage{greek}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{\thepage}
+\rhead{\rightmark}
+\lhead{Ψηφιακή Επεξεργασία Σημάτων}
+\rfoot{\thepage}
+
+% \setlist{12em}
+
+% \setlength{\parindent}{0.5em}
+% \setlength{\parskip}{0em}
+\setcounter{tocdepth}{5}
+
+\setstretch{1.2}
+\justifying
+
+\title{Εργασία 3}
+\subtitle{Συνάρτηση Μεταφοράς και Περιοχή Σύγκλισης}
+\author{Ζαμάγιας Μιχαήλ Ανάργυρος -- ΤΠ5000}
+\course{Ψηφιακή Επεξεργασία Σημάτων}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+
+\tableofcontents
+
+\newpage\section{Άσκηση 1}
+Η $ X(z) = \frac{4-\frac{7}{4}z^{-1}+\frac{1}{4}z^{-2}}{1-\frac{3}{4}z^{-1}+\frac{1}{8}z^{-2}} $ γράφεται ως $ X(z) = \frac{32z^2-14z+2}{8z^2-6z+1} $, μετά από πράξεις:
+\begin{equation*}\label{eq1}
+    \begin{aligned}
+        X(z)           & = \frac{4-\frac{7}{4}z^{-1}+\frac{1}{4}z^{-2}}{1-\frac{3}{4}z^{-1}+\frac{1}{8}z^{-2}} & \implies                                                \\
+        X(z)           & = \frac{4-\frac{7}{4z}+\frac{1}{4z^2}}{1-\frac{3}{4z}+\frac{1}{8z^2}}                 & \implies                                                \\
+        X(z)           & = \frac{4-\frac{7}{4z}+\frac{1}{4z^2}}{1-\frac{3}{4z}+\frac{1}{8z^2}}                 & \overset{z\neq0}{\implies}                              \\
+        \frac{X(z)}{z} & = \frac{\frac{4-\frac{7}{4z}+\frac{1}{4z^2}}{1-\frac{3}{4z}+\frac{1}{8z^2}}}{z}       & \overset{\frac{\frac{b}{c}}{a}=\frac{b}{c*a}}{\implies} \\
+        \frac{X(z)}{z} & = \frac{4-\frac{7}{4z}+\frac{1}{4z^2}}{(1-\frac{3}{4z}+\frac{1}{8z^2})z}              & \implies                                                \\
+        \frac{X(z)}{z} & = \frac{4-\frac{7}{4z}+\frac{1}{4z^2}}{(\frac{8z^2-6z+1}{8z^2})z}                     & \implies                                                \\
+        \frac{X(z)}{z} & = \frac{\frac{16z^2-7z+1}{4z^2}}{(\frac{8z^2-6z+1}{8z^2})z}                           & \overset{\frac{\frac{b}{c}}{a}=\frac{b}{c*a}}{\implies} \\
+        \frac{X(z)}{z} & = \frac{16z^2-7z+1}{4z^3(\frac{8z^2-6z+1}{8z^2})}                                     & \implies                                                \\
+        \frac{X(z)}{z} & = \frac{16z^2-7z+1}{z(\frac{8z^2-6z+1}{2})}                                           & \implies                                                \\
+        X(z)           & = \frac{z(16z^2-7z+1)}{z(\frac{8z^2-6z+1}{2})}                                        & \implies                                                \\
+        X(z)           & = \frac{16z^2-7z+1}{\frac{8z^2-6z+1}{2}}                                              & \implies                                                \\
+        X(z)           & = \frac{32z^2-14z+2}{8z^2-6z+1}                                                                                                                 \\
+    \end{aligned}
+\end{equation*}
+
+\newpage\section{Άσκηση 2}
+
+
+
+\end{document}
