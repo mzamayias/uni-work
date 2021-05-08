@@ -70,15 +70,36 @@
 \subsection{Ακολουθία B}
 \begin{equation*}
     \begin{aligned}
-        x(n) = (0.3)^{| n |} \text{, } | n | < 4
+        x(n) = \begin{cases}
+            (0.3)^{| n |} \text{, } & | n | < 4     \\
+            0\text{, }              & \text{αλλού.} \\
+        \end{cases}
     \end{aligned}
 \end{equation*}
 
+Για $ 0 \leq n < 4 $:
 \begin{equation*}
     \begin{aligned}
-        X(z) & = \sum_{n = 4}^{ 4 } x(n)z^{-n} \implies                                                                           \\
-             & = \sum_{n = 4}^{ 4 } 0.3^{|n|} z^{-n} \implies                                                                     \\
-             & = 0.3^{-3} z^{3} + 0.3^{-2} z^{2} + 0.3^{-1} z^{1} + 1 + 0.3^{1} z^{-1} + 0.3^{2} z^{-2} + 0.3^{3} z^{-3} \implies \\
+        X(z) & = \sum_{n = 0}^{ 3 } x(n)z^{-n}                                          \implies \\
+             & = \sum_{n = 0}^{ 3 } 0.3^{|n|} z^{-n}                                    \implies \\
+             & = \sum_{n = 0}^{ 3 } 0.3^{n} z^{-n}                                      \implies \\
+             & = \sum_{n = 0}^{ 3 } (0.3 z^{ -1 })^n                                    \implies \\
+             & = \sum_{n = 0}^{ 3 } ( \frac{ 0.3 }{ z } )^n                             \implies \\
+             & = \frac{ 1 - ( \frac{ 0.3 }{ z } )^{ \infty } }{ 1 - \frac{ 0.3 }{ z } } \implies \\
+             & = \frac{ 1 }{ 1 - 0.3 z^{ -1 } }                                         \implies \\
+             & = \frac{ z }{ z - 0.3 }
+    \end{aligned}
+\end{equation*}
+
+Για $ 4 < n < 0 $:
+\begin{equation*}
+    \begin{aligned}
+        X(z) & = \sum_{n = -3}^{ -1 } x(n)z^{-n}              \implies \\
+             & = \sum_{n = -3}^{ -1 } 0.3^{|n|} z^{-n}        \implies \\
+             & = \sum_{n = -3}^{ -1 } 0.3^{-n} z^{-n}         \implies \\
+             & = \sum_{n = -3}^{ -1 } (0.3 z)^{ -n }          \implies \\
+             & = \sum_{n = -3}^{ -1 } \frac{ 1 }{ (0.3 z)^n } \implies \\
+             & = 0.027 z^3 + 0.09 z^2 + 0.3 z
     \end{aligned}
 \end{equation*}
 
