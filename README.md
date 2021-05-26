@@ -6,3 +6,5 @@ Evolution of glowing-sniffle. A better repo for my uni work.
 <img src="https://media.giphy.com/media/YrU0MqWSs5T3jYiAmH/giphy.gif"/>
 <img src="https://media.giphy.com/media/7zJZgRRVrKfzo71lnR/giphy.gif"/>
 <img src="https://media.giphy.com/media/J8U6jQs5JYXnO/giphy.gif"/>
+<img src="https://media.giphy.com/media/H88NapcX4b2oyvVJpu/giphy.gif"/>
+<img src="https://media.giphy.com/media/26gsjCZpPolPr3sBy/giphy.gif"/>
