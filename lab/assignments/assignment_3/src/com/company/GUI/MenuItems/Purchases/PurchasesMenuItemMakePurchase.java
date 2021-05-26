@@ -1,6 +1,6 @@
 package com.company.GUI.MenuItems.Purchases;
 
-import com.company.GUI.Dialogs.PurchasesDialogMakePurchase;
+import com.company.GUI.Dialogs.Purchases.PurchasesDialogMakePurchase;
 
 import javax.swing.*;
 
