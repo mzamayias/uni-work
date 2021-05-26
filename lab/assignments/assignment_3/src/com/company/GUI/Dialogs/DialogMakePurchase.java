@@ -10,5 +10,7 @@ public class DialogMakePurchase extends BaseDialog {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout());
         add(jPanel);
+
+        setVisible(true);
     }
 }
