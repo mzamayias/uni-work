@@ -16,6 +16,8 @@
 \usepackage{fancyhdr}
 \usepackage{multicol}
 \usepackage{enumitem}
+\usepackage{tikz,fullpage}
+\usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 
 \setlength{\headheight}{30pt}
@@ -27,13 +29,20 @@
 \setmainfont{Times New Roman}
 \setdefaultlanguage{greek}
 
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[L]{\rightmark}
+% \fancyhead[R]{\thepage}
+% \rhead{\rightmark}
+% \lhead{Διαχείρηση Έργων Πληροφορικής}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\rightmark}
-\fancyhead[R]{\thepage}
-\rhead{\rightmark}
-\lhead{Διαχείρηση Έργων Πληροφορικής}
-\rfoot{\thepage}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usetikzlibrary{shapes, positioning, calc}
 
 % \setlist{12em}
 
@@ -45,7 +54,7 @@
 \justifying
 
 \title{Εργασία 2}
-\subtitle{Ασκήσεις πάνω σε CPM, Pert και Resource Management}
+\subtitle{Ασκήσεις CPM, PERT και Resource Management}
 \author{Ζαμάγιας Μιχαήλ Ανάργυρος -- ΤΠ5000}
 \course{Διαχείρηση Έργων Πληροφορικής}
 \date{\today}
@@ -65,6 +74,53 @@
 \newpage
 
 \section{Άσκηση CPM}
+Μια εταιρεία έχει αναλάβει την ανάπτυξη ενός μεγάλου πληροφοριακού συστήματος. Το όλο έργο απαιτεί για την ολοκλήρωσή του την υλοποίηση 12 δραστηριοτήτων. Οι σχέσεις μεταξύ των δραστηριοτήτων καθώς και οι διάρκειες δίνονται στον παρακάτω πίνακα:
+\begin{table}
+    \centering
+    \begin{tabular}{llll}
+        \hline
+        Προγενέστερη Δραστηριότητα & Διάρκεια (σε ημέρες) & Δραστηριότητα \\ \hline
+        100                        & 14                   & 201, 202      \\
+        101                        & 10                   & 301           \\
+        102                        & 13                   & 203, 204      \\
+        201                        & 15                   & 302           \\
+        202                        & 25                   & 301           \\
+        203                        & 12                   & 301           \\
+        204                        & 14                   & 303, 304      \\
+        301                        & 17                   & 401           \\
+        302                        & 13                   & 401           \\
+        303                        & 10                   & 401           \\
+        304                        & 10                   & -             \\
+        401                        & 11                   & -             \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Ποια είναι η κρίσιμη διαδρομή και ποιος ο χρόνος περάτωσης του έργου;}
+\begin{tikzpicture}
+    [
+        half_aon/.style={rectangle split, rectangle split horizontal, rectangle split parts=3, rounded corners, draw, align=center},
+    ]
+    \node [half_aon] (a_l) {
+        \nodepart{one}0
+        \nodepart{two}A
+        \nodepart{three}14
+    };
+\end{tikzpicture}
+œ
+\subsection{Αν η δραστηριότητα 203 καθυστερήσει κατά 9 μέρες θα επηρεαστεί ο χρόνος υλοποίησης του έργου και γιατί;}
+
+\subsection{Αν η δραστηριότητα 204 καθυστερήσει κατά 19 μέρες αντί για 14, τι θα συμβέι σε σχέση με τον χρόνο υλοποίησης του έργου και γιατί;}
+
+\subsection{Ποια είναι η νέα κρίσιμη διαδρομή και ποιος ο χρόνος περάτωσης του έργου;}
+Δεδομένου ότι, σε σύσκεψη που έγινε μετά την πάροδο 16 ημερών από την έναρξη του έργου, διαπιστώθηκαν τα ακόλουθα:
+\begin{itemize}
+    \item Οι δραστηριότητες 100, 101 και 102 είχαν πραγματοποιηθεί σύμφωνα με τον αρχικό προγραμματισμό.
+    \item Οι δραστηριότητες 201 κι 202 είναι σε εξέλιξη και απαιτούν 6 και 10 ημέρες αντίστοιχα για να ολοκληρωθούν.
+    \item Οι δραστηριότητες 203 και 204 είναι επίσης σε εξέλιξη και απαιτούν 3 και 21 ημέρες αντίστοιχα για να ολοκληρωθούν.
+    \item Για την δραστηριότητα 303 έγινε νέα εκτίμηση της διάρκειάς της και υπολογίστηκε ότι απαιτεί12 ημέρες για να ολοκληρωθεί.
+    \item Για την δραστηριότητα 304 αποφασίστηκε όρι μπορεί να υλοποιηθεί σε 5 ημέρες, ενώ οι υπόλοιπες δραστηριότητες υπολογίζεται ότι θα εκτελεστούν σύμφωνα με τον αρχικό προγραμματισμό.
+\end{itemize}
+
 
 \section{Άσκηση PERT}
 
