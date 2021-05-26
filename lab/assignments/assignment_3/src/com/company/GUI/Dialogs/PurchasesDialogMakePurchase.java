@@ -3,8 +3,8 @@ package com.company.GUI.Dialogs;
 import javax.swing.*;
 import java.awt.*;
 
-public class DialogMakePurchase extends BaseDialog {
-    public DialogMakePurchase() {
+public class PurchasesDialogMakePurchase extends BaseDialog {
+    public PurchasesDialogMakePurchase() {
         setTitle("Make Purchase");
 
         JPanel jPanel = new JPanel();

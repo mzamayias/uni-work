@@ -2,8 +2,8 @@ package com.company.GUI.MenuItems.Help;
 
 import javax.swing.JMenuItem;
 
-public class HelpAbout extends JMenuItem {
-    public HelpAbout() {
+public class HelpMenuItemAbout extends JMenuItem {
+    public HelpMenuItemAbout() {
         setText("About");
     }
 }
