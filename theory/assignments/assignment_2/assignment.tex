@@ -7,51 +7,33 @@
 \usepackage{polyglossia}
 \usepackage{setspace}
 \usepackage{ragged2e}
-\usepackage{geometry} % to change the page dimensions
-\usepackage{graphicx} % support the \includegraphics command and options
-% \usepackage[indent]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{booktabs} % for much better looking tables
-\usepackage{array} % for better arrays (eg matrices) in maths
-\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{paralist}
 \usepackage{fancyhdr}
 \usepackage{multicol}
+\usepackage{pagecolor}
 \usepackage{enumitem}
 \usepackage{tikz,fullpage}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 
-\setlength{\headheight}{30pt}
-\addtolength{\topmargin}{-15pt}
-
-\geometry{a4paper} % or letterpaper (US) or a5paper or....
-\geometry{margin=2.5cm} % for example, change the margins to 2
-% inches all round
-\setmainfont{Times New Roman}
+\geometry{a4paper}
+\geometry{margin=2.4cm}
+\setmainfont{GFS Didot}
 \setdefaultlanguage{greek}
-
-% \pagestyle{fancy}
-% \fancyhf{}
-% \fancyhead[L]{\rightmark}
-% \fancyhead[R]{\thepage}
-% \rhead{\rightmark}
-% \lhead{Διαχείρηση Έργων Πληροφορικής}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\rightmark}
-\cfoot{\thepage}
-\renewcommand{\headrulewidth}{1pt}
-\renewcommand{\footrulewidth}{1pt}
 
 \usetikzlibrary{shapes, positioning, calc}
 
-% \setlist{12em}
-
-% \setlength{\parindent}{0.5em}
-% \setlength{\parskip}{0em}
-\setcounter{tocdepth}{5}
-
 \setstretch{1.2}
 \justifying
+
+\definecolor{calm white}{HTML}{F3F3F3}
+\definecolor{dark grey}{HTML}{303030}
+\pagecolor{calm white}
+\color{dark grey}
 
 \title{Εργασία 2}
 \subtitle{Ασκήσεις CPM, PERT και Resource Management}
@@ -98,15 +80,29 @@
 \subsection{Ποια είναι η κρίσιμη διαδρομή και ποιος ο χρόνος περάτωσης του έργου;}
 \begin{tikzpicture}
     [
-        half_aon/.style={rectangle split, rectangle split horizontal, rectangle split parts=3, rounded corners, draw, align=center},
+        sub_aon/.style={rectangle split, rectangle split parts=2, align=center, draw},
+        arrow/.style={-latex, thick}
     ]
-    \node [half_aon] (a_l) {
-        \nodepart{one}0
-        \nodepart{two}A
-        \nodepart{three}14
+    \node [sub_aon] (example_left) at (0, 0) {
+        \nodepart{one} $EST_i$
+        \nodepart{two} $LST_i$
     };
+    \node [sub_aon, xshift=+6.7mm] (example_right) at (example_left.east) {
+        \nodepart{one} $EFT_i$
+        \nodepart{two} $LFT_i$
+    };
+
+    \node [sub_aon, xshift=+2cm] (101 left) at (example_right.south east) {
+        \nodepart{one} $0$
+        \nodepart{two} $14$
+    };
+    \node [sub_aon, xshift=+6.7mm] (101 right) at (101 left.east) {
+        \nodepart{one} $EFT_i$
+        \nodepart{two} $LFT_i$
+    };
+    \draw [arrow] (example_right)--(101 left) node[midway, right]{Example};
 \end{tikzpicture}
-œ
+
 \subsection{Αν η δραστηριότητα 203 καθυστερήσει κατά 9 μέρες θα επηρεαστεί ο χρόνος υλοποίησης του έργου και γιατί;}
 
 \subsection{Αν η δραστηριότητα 204 καθυστερήσει κατά 19 μέρες αντί για 14, τι θα συμβέι σε σχέση με τον χρόνο υλοποίησης του έργου και γιατί;}
