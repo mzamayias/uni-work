@@ -9,6 +9,7 @@
 \usepackage{ragged2e}
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage{titlesec}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{paralist}
@@ -16,7 +17,7 @@
 \usepackage{multicol}
 \usepackage{pagecolor}
 \usepackage{enumitem}
-\usepackage{tikz,fullpage}
+\usepackage{svg}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 
@@ -25,8 +26,6 @@
 \setmainfont{GFS Didot}
 \setdefaultlanguage{greek}
 
-\usetikzlibrary{shapes, positioning, calc}
-
 \setstretch{1.2}
 \justifying
 
@@ -34,6 +33,19 @@
 \definecolor{dark grey}{HTML}{303030}
 \pagecolor{calm white}
 \color{dark grey}
+
+\graphicspath{ {.} }
+
+\titleformat{\section}
+       {\normalfont\fontsize{15}{18}\bfseries}
+       {\thesection}
+       {1em}
+       {}
+\titleformat{\subsection}
+       {\normalfont\fontsize{12}{15}\bfseries\itshape}
+       {\thesubsection}
+       {1em}
+       {}
 
 \title{Εργασία 2}
 \subtitle{Ασκήσεις CPM, PERT και Resource Management}
@@ -59,7 +71,7 @@
 Μια εταιρεία έχει αναλάβει την ανάπτυξη ενός μεγάλου πληροφοριακού συστήματος. Το όλο έργο απαιτεί για την ολοκλήρωσή του την υλοποίηση 12 δραστηριοτήτων. Οι σχέσεις μεταξύ των δραστηριοτήτων καθώς και οι διάρκειες δίνονται στον παρακάτω πίνακα:
 \begin{table}
     \centering
-    \begin{tabular}{llll}
+    \begin{tabular}{lll}
         \hline
         Προγενέστερη Δραστηριότητα & Διάρκεια (σε ημέρες) & Δραστηριότητα \\ \hline
         100                        & 14                   & 201, 202      \\
@@ -77,36 +89,24 @@
     \end{tabular}
 \end{table}
 
+\newpage
 \subsection{Ποια είναι η κρίσιμη διαδρομή και ποιος ο χρόνος περάτωσης του έργου;}
-\begin{tikzpicture}
-    [
-        sub_aon/.style={rectangle split, rectangle split parts=2, align=center, draw},
-        arrow/.style={-latex, thick}
-    ]
-    \node [sub_aon] (example_left) at (0, 0) {
-        \nodepart{one} $EST_i$
-        \nodepart{two} $LST_i$
-    };
-    \node [sub_aon, xshift=+6.7mm] (example_right) at (example_left.east) {
-        \nodepart{one} $EFT_i$
-        \nodepart{two} $LFT_i$
-    };
-
-    \node [sub_aon, xshift=+2cm] (101 left) at (example_right.south east) {
-        \nodepart{one} $0$
-        \nodepart{two} $14$
-    };
-    \node [sub_aon, xshift=+6.7mm] (101 right) at (101 left.east) {
-        \nodepart{one} $EFT_i$
-        \nodepart{two} $LFT_i$
-    };
-    \draw [arrow] (example_right)--(101 left) node[midway, right]{Example};
-\end{tikzpicture}
+\begin{figure}
+    \centering
+    \def\svgwidth{\columnwidth}
+    \input{image.pdf_tex}
+\end{figure}
+Η κρίσιμη διαδρομή είναι η \{100, 202, 301, 401, END\} και ο χρόνος περάτωσης του έργου είναι 67 ημέρες.
 
 \subsection{Αν η δραστηριότητα 203 καθυστερήσει κατά 9 μέρες θα επηρεαστεί ο χρόνος υλοποίησης του έργου και γιατί;}
+Δεν θα επηρεαστεί ο χρόνος περάτωσης του έργου αν η δραστηριότητα 203 καθυστερήσει κατά 9 μέρες, επειδή το νέο Slack της δραστηριότητας 203 είναι μεγαλύτερο της καθυστέρησής της. Επίσης, δεν αλλάζει η κρίσιμη διαδρομή καθώς το $SL_{203}$ παραμένει διάφορο του μηδενός:
+$$ SL_{203}' = 14 - 9 $$
+$$ SL_{203}' = 5 $$
+$$ SL_{203}' \neq 0 $$
 
 \subsection{Αν η δραστηριότητα 204 καθυστερήσει κατά 19 μέρες αντί για 14, τι θα συμβέι σε σχέση με τον χρόνο υλοποίησης του έργου και γιατί;}
 
+\newpage
 \subsection{Ποια είναι η νέα κρίσιμη διαδρομή και ποιος ο χρόνος περάτωσης του έργου;}
 Δεδομένου ότι, σε σύσκεψη που έγινε μετά την πάροδο 16 ημερών από την έναρξη του έργου, διαπιστώθηκαν τα ακόλουθα:
 \begin{itemize}
