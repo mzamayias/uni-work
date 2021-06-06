@@ -10,7 +10,7 @@ public class DatabaseConnector {
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
-            String sqlQuery = "select * from purchases.customer;";
+            String sqlQuery = "select * from inventory_logistics.customers;";
             ResultSet resultSet = statement.executeQuery(sqlQuery);
             while (resultSet.next()) {
                 System.out.printf(
