@@ -21,7 +21,7 @@ public class HelpDialogAbout extends BaseDialog {
                 new JLabel("@mzamayias")
         };
 
-        jPanel.setLayout(new GridLayout(3,2));
+        jPanel.setLayout(new GridLayout(3, 2));
         for (JLabel jLabel : labelsAuthor) {
             jPanel.add(jLabel);
         }
@@ -32,11 +32,12 @@ public class HelpDialogAbout extends BaseDialog {
             jPanel.add(jLabel);
         }
 
-        setTitle("About");
         add(jPanel);
-        pack();
-        setSize(300,150);
+
+        setTitle("About");
+        setSize(300, 150);
         setResizable(false);
         setVisible(true);
+        pack();
     }
 }
