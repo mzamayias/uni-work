@@ -7,12 +7,13 @@ import java.awt.*;
 
 public class FilesDialogCustomers extends BaseDialog {
     public FilesDialogCustomers() {
-        setTitle("Customers");
-
         JPanel jPanel = new JPanel();
-        jPanel.setLayout(new FlowLayout());
+
+        jPanel.setLayout(new GridLayout(2, 1));
+
         add(jPanel);
 
+        setTitle("Customers");
         setVisible(true);
     }
 }
