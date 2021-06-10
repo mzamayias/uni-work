@@ -17,6 +17,11 @@ skinparam class {
 	ArrowThickness 1
 }
 
-title Temp
+title Example
+
+class Example
+class Example2
+
+Example "1" -right- "*" Example2 : description
 
 @enduml
