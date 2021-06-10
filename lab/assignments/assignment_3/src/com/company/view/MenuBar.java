@@ -1,9 +1,9 @@
 package com.company.view;
 
-import com.company.view.Menus.FilesMenu;
-import com.company.view.Menus.HelpMenu;
-import com.company.view.Menus.OrdersMenu;
-import com.company.view.Menus.ReportsMenu;
+import com.company.view.menus.FilesMenu;
+import com.company.view.menus.HelpMenu;
+import com.company.view.menus.OrdersMenu;
+import com.company.view.menus.ReportsMenu;
 
 import javax.swing.JMenuBar;
 

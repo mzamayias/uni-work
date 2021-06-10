@@ -1,6 +1,6 @@
-package com.company.view.Dialogs.Orders;
+package com.company.view.dialogs.Orders;
 
-import com.company.view.Dialogs.BaseDialog;
+import com.company.view.dialogs.BaseDialog;
 
 import javax.swing.*;
 import java.awt.*;

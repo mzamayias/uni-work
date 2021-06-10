@@ -1,6 +1,6 @@
-package com.company.view.Menus;
+package com.company.view.menus;
 
-import com.company.view.MenuItems.Reports.*;
+import com.company.view.menuItems.Reports.*;
 
 import javax.swing.*;
 

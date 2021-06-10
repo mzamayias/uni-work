@@ -1,4 +1,4 @@
-package com.company.view.MenuItems.Files;
+package com.company.view.menuItems.Files;
 
 import javax.swing.JMenuItem;
 

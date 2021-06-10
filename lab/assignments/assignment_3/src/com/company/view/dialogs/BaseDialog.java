@@ -1,4 +1,4 @@
-package com.company.view.Dialogs;
+package com.company.view.dialogs;
 
 import javax.swing.*;
 import java.awt.*;

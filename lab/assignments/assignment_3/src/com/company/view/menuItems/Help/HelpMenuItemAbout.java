@@ -1,6 +1,6 @@
-package com.company.view.MenuItems.Help;
+package com.company.view.menuItems.Help;
 
-import com.company.view.Dialogs.Help.HelpDialogAbout;
+import com.company.view.dialogs.Help.HelpDialogAbout;
 
 import javax.swing.JMenuItem;
 
