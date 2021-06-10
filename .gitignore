@@ -2,3 +2,5 @@
 **/.idea/
 **/out/
 **/.vscode/
+**/*.xdv
+**/*.synctex.gz
