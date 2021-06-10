@@ -12,8 +12,11 @@ public class FilesDialogCustomers extends BaseDialog {
 
         jPanel.setLayout(new BorderLayout());
 
+        JButton firstButton = new JButton("First");
+        JButton previousButton = new JButton("Previous");
 
-
+        jToolBar.add(firstButton);
+        jToolBar.add(previousButton);
 
         add(jToolBar, BorderLayout.PAGE_START);
 
