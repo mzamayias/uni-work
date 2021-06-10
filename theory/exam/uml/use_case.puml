@@ -1,27 +1,37 @@
 @startuml
 
-skinparam handwritten true
-skinparam DefaultFontName xkcd script
-skinparam backgroundColor #FFFFFF
-skinparam Dpi 200
+' skinparam handwritten true
+' skinparam monochrome true
+skinparam DefaultFontName GFS Didot
+skinparam packageStyle rectangle
+left to right direction
 
-skinparam class {
-	BackgroundColor #FFFFFF
-	FontSize 12
-	FontColor #FFFFFF
-	HeaderBackgroundColor #6E7B91
-	BorderColor #96A8C8
-	BorderThickness 1
-	AttributeFontSize 12
-	ArrowColor #000000
-	ArrowThickness 1
+title Use case diagram
+
+actor "User" as user
+actor "Server" as server
+
+rectangle {
+	usecase "Αναζήτηση" as searchLogin
+	usecase "Μη έγκυρος ΑΜΚΑ." as searchLoginErrorSSN
+	usecase "Μη έγκυρος ΑΦΜ." as searchLoginErrorTRN
+	usecase "Είσοδος στην εφαρμογή" as searchLoginSuccess
+	usecase "Αυθεντικοποίηση Χρήστη" as taxisLogin
+	usecase "Αποτυχία στην Αυθεντικοποίηση του χρήστη!" as taxisLoginError
+	usecase "Πληροφορίες Πολίτη" as taxisLoginSuccess
+
+	user -- searchLogin
+	user -- taxisLogin
+	searchLogin -- server
+	taxisLogin -- server
+
+	searchLogin .> searchLoginSuccess : <<include>>
+	searchLoginErrorSSN .> searchLogin : <<extend>>
+	searchLoginErrorTRN .> searchLogin : <<extend>>
+	searchLoginSuccess .> taxisLogin : <<include>>
+	taxisLogin .> taxisLoginError : <<extend>>
+	taxisLoginError .> taxisLogin  : <<extend>>
+	taxisLogin .> taxisLoginSuccess : <<include>>
 }
-
-title Example
-
-class Example
-class Example2
-
-Example "1" -right- "*" Example2 : description
 
 @enduml

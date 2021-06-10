@@ -1,0 +1,50 @@
+@startuml
+
+' skinparam handwritten true
+skinparam DefaultFontName GFS Didot
+skinparam backgroundColor #FFFFFF
+skinparam Dpi 200
+
+' skinparam class {
+' 	BackgroundColor #FFFFFF
+' 	FontSize 12
+' 	FontColor #FFFFFF
+' 	HeaderBackgroundColor #6E7B91
+' 	BorderColor #96A8C8
+' 	BorderThickness 1
+' 	AttributeFontSize 12
+' 	ArrowColor #000000
+' 	ArrowThickness 1
+' }
+
+title Διάγραμμα κλάσεων
+
+class "User" as user {
+	- socialSecurityNumber : int
+	- taxReferenceNumber : int
+	- LastName : String
+	- username : String
+	- password : String
+	+ getSocialSecurityNumber()
+	+ getTaxReferenceNumber()
+	+ getUsername()
+	+ getPassword()
+}
+
+class "Server" as server {
+	+ void verifySocialSecurityNumber()
+	+ void verifyTaxReferenceNumber()
+	+ void verifyLastName()
+	+ void verifyUsername()
+	+ void verifyPassword()
+}
+
+class "Appointment" as appointment {
+    - firstDoseDate: Date
+    - secondDoseDate: Date
+	+ void getDoseDate()
+	+ void verifyDoseDate()
+}
+
+
+@enduml
