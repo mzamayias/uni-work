@@ -1,6 +1,6 @@
 % !TEX TS-program = XeTeX
 % !TEX encoding = UTF-8 Unicode
-% !TEX spellcheck = gr-GR
+% !TEX spellverify = gr-GR
 
 \documentclass[12pt]{turabian-researchpaper}
 \usepackage{fontspec}
@@ -16,7 +16,6 @@
 \usepackage{paralist}
 \usepackage{fancyhdr}
 \usepackage{multicol}
-\usepackage{pagecolor}
 \usepackage{enumitem}
 \usepackage{svg}
 \usepackage{xcolor}
@@ -29,11 +28,6 @@
 
 \setstretch{1.2}
 \justifying
-
-\definecolor{calm white}{HTML}{F3F3F3}
-\definecolor{dark grey}{HTML}{303030}
-% \pagecolor{calm white}
-\color{dark grey}
 
 \graphicspath{ {.} }
 
@@ -64,12 +58,122 @@
 
 \newpage
 
-\section{Θέμα 1}
+\section{Ερώτηση 1}
+\textbf{Αναλύοντας το παραπάνω λογισμικό προσδιορίστε ΟΛΕΣ τις λειτουργίες του και καταγράψτε τις δίνοντας τίτλο και περιγραφή σύμφωνα με το παράδειγμα.}
 
-\section{Θέμα 2}
+\begin{center}
 
-\section{Θέμα 3}
+    \begin{table}[]
+        \centering
+        \begin{tabular}{|l|}
+            \hline
+            \textbf{Προσδιορισμός / Τίτλος λειτουργίας}            \\ \hline
+            Αναζήτηση για ραντεβού εμβολιασμού                     \\ \hline
+            \textbf{Περιγραφή Λειτουργίας}                         \\ \hline
+            Ο χρήστης βλέπει αν ανήκει στην πληθυσμιακή ομάδα που  \\
+            μπορεί να εμβολιαστεί την τρέχουσα περίοδο με βάση τον \\
+            ΑΜΚΑ σε συνδυασμό με τον ΑΦΜ του μπορεί να κλείσει το  \\
+            ραντεβού του.                                          \\ \hline
+        \end{tabular}
+    \end{table}
 
-\section{Θέμα 4}
+    \begin{table}[]
+        \centering
+        \begin{tabular}{|l|}
+            \hline
+            \textbf{Προσδιορισμός / Τίτλος λειτουργίας}             \\ \hline
+            Ενημέρωση χρήστη για την πρόοδο του εμβολιασμού         \\ \hline
+            \textbf{Περιγραφή Λειτουργίας}                          \\ \hline
+            Ο χρήστης ενημερώνεται με τα τελευταία δεδομένα σχετικα \\
+            με την πρόοδο του εμβολιασμού. Αν θέλει, μπορεί να δει  \\
+            περισσότερα δεδομένα.                                   \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \begin{table}[]
+        \centering
+        \begin{tabular}{|l|}
+            \hline
+            \textbf{Προσδιορισμός / Τίτλος λειτουργίας}                 \\ \hline
+            Πληροφόρηση χρήστη                                          \\ \hline
+            \textbf{Περιγραφή Λειτουργίας}                              \\ \hline
+            Ο χρήστης ενημερώνεται για τις απαντήσεις συχνών ερωτήσεων, \\
+            την διαδικασία του εμβολιασμού και γενικές πληροδοφίες.     \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \begin{table}[]
+        \centering
+        \begin{tabular}{|l|}
+            \hline
+            \textbf{Προσδιορισμός / Τίτλος λειτουργίας}          \\ \hline
+            Άυλη συνταγογράφηση                                  \\ \hline
+            \textbf{Περιγραφή Λειτουργίας}                       \\ \hline
+            Ο χρήστης κάνει εγγραφή στην πλατφόρμα της άυλης     \\
+            συνταγογράφησης, καθώς το ραντεβού εμβολιασμού περνά \\
+            από αυτήν την πλατφόρμα.                             \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \begin{table}[]
+        \centering
+        \begin{tabular}{|l|}
+            \hline
+            \textbf{Προσδιορισμός / Τίτλος λειτουργίας}                  \\ \hline
+            Ανακοινώσεις                                                 \\ \hline
+            \textbf{Περιγραφή Λειτουργίας}                               \\ \hline
+            Ο χρήστης ενημερώνεται όλες τις ανακοινώσεις της πλατφόρμας. \\ \hline
+        \end{tabular}
+    \end{table}
+
+\end{center}
+\section{Ερώτηση 2}
+\textbf{Αναλύοντας το παραπάνω λογισμικό και βασισμένοι στην απάντηση της ερώτησης 1 προσδιορίστε όλα τα στοιχεία του λογισμικού και συμπληρώστε τον παρακάτω πίνακα.}
+
+\begin{center}
+    \begin{table}[]
+        \centering
+        \begin{tabular}{|l|l|l|l|}
+            \hline
+            \textbf{Name} & \textbf{Attributes}       & \textbf{Methods}             & \textbf{Role} \\ \hline
+            User          & socialSecurityNumber: int & getSocialSecurityNumber()    & User          \\
+                          & taxReferenceNumber: int   & getTaxReferenceNumber()      &               \\
+                          & lastName: String          & getLastName()                &               \\ \hline
+                          & username: String          & getUsername()                &               \\ \hline
+                          & password: String          & getPassword()                &               \\ \hline
+            TaxisNet      &                           & verifySocialSecurityNumber() & Server        \\
+                          &                           & verifyTaxReferenceNumber()   &               \\
+                          &                           & verifyLastName()             &               \\
+                          &                           & verifyUsername()             &               \\
+                          &                           & verifyPassword()             &               \\ \hline
+            Appointment   & firstDoseDate: Date       & getDoseDate()                & Server        \\
+                          & secondDoseDate:Date       & verifyDoseDate()             &               \\ \hline
+        \end{tabular}
+    \end{table}
+
+\end{center}
+
+\newpage
+\section{Ερώτηση 3}
+\textbf{Βασισμένοι στην απάντηση της ερώτησης 2 σχεδιάστε ένα πλήρες ΔΙΑΓΡΑΜΜΑ ΠΕΡΙΣΠΤΩΣΕΩΝ ΧΡΗΣΗΣ UML.}
+
+\begin{center}
+    \includegraphics[scale=0.9]{use_case_diagram.png}
+\end{center}
+
+
+\section{Ερώτηση 4}
+\textbf{Βασισμένοι στην απάντηση της ερώτησης 2 και 3 σχεδιάστε ένα πλήρες ΔΙΑΓΡΑΜΜΑ ΚΛΑΣΕΩΝ UML σε επίπεδο λεπτομέρειας σταδίου σχεδιασμού λογισμικού }
+
+\begin{center}
+    \includegraphics[scale=0.6]{class_diagram.png}
+\end{center}
+
+\newpage
+\section{Πάσο}
+
+\includegraphics[scale=0.09]{id_front.jpg}
+
+\includegraphics[scale=0.09]{id_back.jpg}
 
 \end{document}
