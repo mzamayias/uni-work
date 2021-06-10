@@ -1,4 +1,4 @@
-package com.company.GUI;
+package com.company.view;
 
 import javax.swing.*;
 

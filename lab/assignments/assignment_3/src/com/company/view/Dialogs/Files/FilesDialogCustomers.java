@@ -1,6 +1,6 @@
-package com.company.GUI.Dialogs.Files;
+package com.company.view.Dialogs.Files;
 
-import com.company.GUI.Dialogs.BaseDialog;
+import com.company.view.Dialogs.BaseDialog;
 
 import javax.swing.*;
 import java.awt.*;

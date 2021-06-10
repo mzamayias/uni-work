@@ -8,6 +8,11 @@ public class DatabaseConnector {
         String user = "root";
         String password = "secret";
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
             String sqlQuery = "select * from inventory_logistics.customers;";

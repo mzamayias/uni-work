@@ -1,7 +1,7 @@
 package com.company;
 
 import static com.company.DatabaseConnector.databaseConnector;
-import com.company.GUI.Frame;
+import com.company.view.Frame;
 
 public class Main {
 

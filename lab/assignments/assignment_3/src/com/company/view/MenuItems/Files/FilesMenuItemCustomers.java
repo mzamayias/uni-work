@@ -1,6 +1,6 @@
-package com.company.GUI.MenuItems.Files;
+package com.company.view.MenuItems.Files;
 
-import com.company.GUI.Dialogs.Files.FilesDialogCustomers;
+import com.company.view.Dialogs.Files.FilesDialogCustomers;
 
 import javax.swing.*;
 

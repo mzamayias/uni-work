@@ -1,6 +1,6 @@
-package com.company.GUI.Menus;
+package com.company.view.Menus;
 
-import com.company.GUI.MenuItems.Orders.OrdersMenuItemMakeOrder;
+import com.company.view.MenuItems.Orders.OrdersMenuItemMakeOrder;
 
 import javax.swing.JMenu;
 

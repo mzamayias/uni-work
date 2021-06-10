@@ -1,6 +1,6 @@
-package com.company.GUI.Menus;
+package com.company.view.Menus;
 
-import com.company.GUI.MenuItems.Files.*;
+import com.company.view.MenuItems.Files.*;
 
 import javax.swing.JMenu;
 

@@ -1,6 +1,6 @@
-package com.company.GUI.MenuItems.Orders;
+package com.company.view.MenuItems.Orders;
 
-import com.company.GUI.Dialogs.Orders.OrdersDialogMakeOrder;
+import com.company.view.Dialogs.Orders.OrdersDialogMakeOrder;
 
 import javax.swing.*;
 

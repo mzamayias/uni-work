@@ -1,4 +1,4 @@
-package com.company.GUI.MenuItems.Files;
+package com.company.view.MenuItems.Files;
 
 import javax.swing.*;
 

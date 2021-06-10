@@ -1,4 +1,4 @@
-package com.company.GUI.MenuItems.Reports;
+package com.company.view.MenuItems.Reports;
 
 import javax.swing.JMenuItem;
 
