@@ -1,0 +1,22 @@
+@startuml
+
+skinparam handwritten true
+skinparam DefaultFontName xkcd script
+skinparam backgroundColor #FFFFFF
+skinparam Dpi 200
+
+skinparam class {
+	BackgroundColor #FFFFFF
+	FontSize 12
+	FontColor #FFFFFF
+	HeaderBackgroundColor #6E7B91
+	BorderColor #96A8C8
+	BorderThickness 1
+	AttributeFontSize 12
+	ArrowColor #000000
+	ArrowThickness 1
+}
+
+title Temp
+
+@enduml
