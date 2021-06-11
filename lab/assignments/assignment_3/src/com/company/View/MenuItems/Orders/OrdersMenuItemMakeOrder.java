@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class OrdersMenuItemMakeOrder extends JMenuItem {
     public OrdersMenuItemMakeOrder() {
-        setText("Make Purchase");
+        setText("Place Order");
         addActionListener(l -> new OrdersDialogMakeOrder());
     }
 }
