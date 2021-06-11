@@ -1,7 +1,7 @@
 package com.company;
 
-import static com.company.controller.DatabaseConnector.databaseConnector;
-import com.company.view.Frame;
+import static com.company.Controller.DatabaseConnector.databaseConnector;
+import com.company.View.Frame;
 
 public class Main {
 
