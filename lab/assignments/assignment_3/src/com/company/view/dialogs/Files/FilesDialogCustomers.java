@@ -9,18 +9,30 @@ public class FilesDialogCustomers extends BaseDialog {
     public FilesDialogCustomers() {
         JPanel jPanel = new JPanel();
         JToolBar jToolBar = new JToolBar();
+        JButton[] toolBarButtons = {
+                new JButton("First"),
+                new JButton("Previous"),
+                new JButton("Next"),
+                new JButton("Last"),
+                new JButton("Add"),
+                new JButton("Modify"),
+                new JButton("Delete"),
+                new JButton("OK"),
+                new JButton("Cancel")
+        };
 
-        jPanel.setLayout(new BorderLayout());
+        for (JButton toolBarButton : toolBarButtons) {
+//            toolBarButton.setEnabled(false);
+            jToolBar.add(toolBarButton);
+        }
 
-        JButton firstButton = new JButton("First");
-        JButton previousButton = new JButton("Previous");
+        jToolBar.setFloatable(false);
 
-        jToolBar.add(firstButton);
-        jToolBar.add(previousButton);
-
-        add(jToolBar, BorderLayout.PAGE_START);
+        jPanel.add(jToolBar, BorderLayout.NORTH);
 
         add(jPanel);
+
+        setSize(390,270);
         setTitle("Customer");
         setVisible(true);
     }
