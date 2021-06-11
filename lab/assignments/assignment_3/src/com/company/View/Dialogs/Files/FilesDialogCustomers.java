@@ -22,7 +22,6 @@ public class FilesDialogCustomers extends BaseDialog {
         };
 
         for (JButton toolBarButton : toolBarButtons) {
-//            toolBarButton.setEnabled(false);
             jToolBar.add(toolBarButton);
         }
 
