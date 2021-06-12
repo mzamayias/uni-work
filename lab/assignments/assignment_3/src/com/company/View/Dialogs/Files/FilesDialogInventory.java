@@ -2,6 +2,7 @@ package com.company.View.Dialogs.Files;
 
 public class FilesDialogInventory extends FilesDialog {
     // initialize and declare objects
+    static String title = "Inventory";
     static String[] informationElements = {
             "ID",
             "Category",
@@ -19,6 +20,6 @@ public class FilesDialogInventory extends FilesDialog {
     static String query = "SELECT * FROM inventory_logistics.inventory";
 
     public FilesDialogInventory() {
-        super(informationElements, tableCharacteristics, query);
+        super(title, informationElements, tableCharacteristics, query);
     }
 }

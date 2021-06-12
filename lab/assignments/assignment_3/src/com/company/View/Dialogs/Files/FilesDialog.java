@@ -25,13 +25,13 @@ public class FilesDialog extends BaseDialog {
     protected int currentIndex = 0;
     protected int mode = 0;
 
-    public FilesDialog(String[] informationElements, String[] tableCharacteristics, String query) {
-        improveBaseDialog(informationElements, tableCharacteristics);
+    public FilesDialog(String title, String[] informationElements, String[] tableCharacteristics, String query) {
+        improveBaseDialog(title, informationElements, tableCharacteristics);
         databaseConnection();
         prepareForm(query);
     }
 
-    public void improveBaseDialog(String[] informationElements, String[] tableCharacteristics) {
+    public void improveBaseDialog(String title, String[] informationElements, String[] tableCharacteristics) {
         // initialize and declare objects
         JPanel tablePanel = new JPanel();
         JPanel toolBarPanel = new JPanel();
@@ -53,7 +53,7 @@ public class FilesDialog extends BaseDialog {
         tablePanel.setLayout(new GridLayout(5, 1));
 
         // set dialog preferences
-        setTitle("Inventory");
+        setTitle(title);
 
         // set button preferences
         buttonOK.setEnabled(false);
