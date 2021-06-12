@@ -5,7 +5,7 @@ import java.awt.*;
 import java.sql.*;
 
 public class BaseDialog extends JDialog {
-    public Connection connection = null;
+    protected Connection connection = null;
 
     public BaseDialog() {
 //        setAlwaysOnTop(true);
@@ -18,7 +18,7 @@ public class BaseDialog extends JDialog {
         pack();
     }
 
-    public void databaseConnection() {
+    protected void databaseConnection() {
         String url = "jdbc:mysql://localhost:3306";
         String user = "root";
         String password = "secret";
@@ -37,7 +37,7 @@ public class BaseDialog extends JDialog {
         }
     }
 
-    public static void closeDatabase(ResultSet resultSet, Statement statement, Connection connection) {
+    protected static void closeDatabase(ResultSet resultSet, Statement statement, Connection connection) {
         if (resultSet != null) {
             try {
                 if (!resultSet.isClosed()) {
