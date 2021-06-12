@@ -6,8 +6,8 @@ public class Frame extends JFrame {
     public Frame() {
         setJMenuBar(new MenuBar());
         setTitle("Inventory Logistics");
+//        setAlwaysOnTop(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setResizable(false);
         setLayout(null);
         setVisible(true);

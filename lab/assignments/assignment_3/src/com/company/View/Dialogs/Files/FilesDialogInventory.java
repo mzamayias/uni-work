@@ -37,8 +37,8 @@ public class FilesDialogInventory extends BaseDialog {
 
     private void improveBaseDialog() {
         // initialize and declare objects
-        JPanel informationPanel = new JPanel(new GridLayout(5, 1));
-        JPanel toolBarPanel = new JPanel(new FlowLayout());
+        JPanel tablePanel = new JPanel();
+        JPanel toolBarPanel = new JPanel();
         JToolBar toolBar = new JToolBar();
         JButton[] toolBarButtons = {
                 buttonFirst, buttonPrevious, buttonNext,
@@ -46,13 +46,16 @@ public class FilesDialogInventory extends BaseDialog {
                 buttonDelete, buttonOK, buttonCancel
         };
 
-        // set dialog preferences
-        setTitle("Inventory");
-
         // set toolbar preferences
         toolBar.setFloatable(false);
 
-        // set OK button preferences
+        // set dialog preferences
+        tablePanel.setLayout(new GridLayout(5, 1));
+
+        // set dialog preferences
+        setTitle("Inventory");
+
+        // set button preferences
         buttonOK.setEnabled(false);
 
         // set button action listeners
@@ -75,15 +78,15 @@ public class FilesDialogInventory extends BaseDialog {
         toolBarPanel.add(toolBar);
 
         // add information panels to information panel
-        informationPanel.add(informationID);
-        informationPanel.add(informationCategory);
-        informationPanel.add(informationDescription);
-        informationPanel.add(informationPrice);
-        informationPanel.add(informationQuantity);
+        tablePanel.add(informationID);
+        tablePanel.add(informationCategory);
+        tablePanel.add(informationDescription);
+        tablePanel.add(informationPrice);
+        tablePanel.add(informationQuantity);
 
         // add toolbar panel and information panels to dialog
-        add(toolBarPanel, BorderLayout.NORTH);
-        add(informationPanel);
+        add(toolBarPanel, BorderLayout.PAGE_START);
+        add(tablePanel, BorderLayout.LINE_END);
 
         pack();
     }
