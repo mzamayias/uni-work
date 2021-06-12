@@ -21,17 +21,17 @@ public class FilesDialog extends BaseDialog {
     protected final JButton buttonCancel = new JButton("Cancel");
     protected ResultSet resultSet = null;
     protected Statement statement;
-    protected static String[] tableCharacteristics = new String[5];
+    protected static String[] columnNames = new String[5];
     protected int currentIndex = 0;
     protected int mode = 0;
 
-    public FilesDialog(String title, String[] informationElements, String[] tableCharacteristics, String query) {
-        improveBaseDialog(title, informationElements, tableCharacteristics);
+    public FilesDialog(String title, String[] informationElements, String[] columnNames, String query) {
+        improveBaseDialog(title, informationElements, columnNames);
         databaseConnection();
         prepareForm(query);
     }
 
-    public void improveBaseDialog(String title, String[] informationElements, String[] tableCharacteristics) {
+    public void improveBaseDialog(String title, String[] informationElements, String[] columnNames) {
         // initialize and declare objects
         JPanel tablePanel = new JPanel();
         JPanel toolBarPanel = new JPanel();
@@ -44,7 +44,7 @@ public class FilesDialog extends BaseDialog {
         for (int i = 0; i < informationPanels.length; i++) {
             informationPanels[i] = new InformationPanel(informationElements[i]);
         }
-        FilesDialog.tableCharacteristics = tableCharacteristics;
+        FilesDialog.columnNames = columnNames;
 
         // set toolbar preferences
         toolBar.setFloatable(false);
@@ -205,9 +205,9 @@ public class FilesDialog extends BaseDialog {
 
     private void showInformation() {
         try {
-            informationPanels[0].setText(String.valueOf(resultSet.getInt(tableCharacteristics[0])));
-            for (int i = 1; i < tableCharacteristics.length; i++) {
-                informationPanels[i].setText(String.valueOf(resultSet.getString(tableCharacteristics[i])));
+            informationPanels[0].setText(String.valueOf(resultSet.getInt(columnNames[0])));
+            for (int i = 1; i < columnNames.length; i++) {
+                informationPanels[i].setText(String.valueOf(resultSet.getString(columnNames[i])));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -225,8 +225,8 @@ public class FilesDialog extends BaseDialog {
             if (mode == 0) {
                 resultSet.moveToInsertRow();
             }
-            for (int i = 1; i < tableCharacteristics.length; i++) {
-                resultSet.updateString(tableCharacteristics[i], informationPanels[i].getText());
+            for (int i = 1; i < columnNames.length; i++) {
+                resultSet.updateString(columnNames[i], informationPanels[i].getText());
             }
             if (mode == 0) {
                 resultSet.insertRow();
