@@ -7,12 +7,16 @@ import java.awt.*;
 
 public class OrdersDialogPlaceOrder extends BaseDialog {
     public OrdersDialogPlaceOrder() {
-        super(new Dimension(480,510));
-        JPanel jPanel = new JPanel();
+        super(new Dimension(480, 510));
+        prepareBaseDialog();
+    }
 
-        jPanel.setLayout(new FlowLayout());
+    private void prepareBaseDialog() {
+        JPanel panel = new JPanel();
 
-        add(jPanel);
+        panel.setLayout(new FlowLayout());
+
+        add(panel);
 
         setTitle("Place Order");
         setVisible(true);
