@@ -13,6 +13,9 @@ public class FilesDialogInventory extends BaseDialog {
     private final InformationPanel informationDescription = new InformationPanel("Description:");
     private final InformationPanel informationPrice = new InformationPanel("Price:");
     private final InformationPanel informationQuantity = new InformationPanel("Quantity:");
+    private final InformationPanel[] informationPanels = {
+            informationID, informationCategory, informationDescription, informationPrice, informationQuantity
+    };
     private final JButton buttonFirst = new JButton("First");
     private final JButton buttonPrevious = new JButton("Previous");
     private final JButton buttonNext = new JButton("Next");
@@ -22,7 +25,6 @@ public class FilesDialogInventory extends BaseDialog {
     private final JButton buttonDelete = new JButton("Delete");
     private final JButton buttonOK = new JButton("OK");
     private final JButton buttonCancel = new JButton("Cancel");
-    private Connection connection = null;
     private ResultSet resultSet = null;
     private Statement statement;
     private String query;
@@ -78,36 +80,15 @@ public class FilesDialogInventory extends BaseDialog {
         toolBarPanel.add(toolBar);
 
         // add information panels to information panel
-        tablePanel.add(informationID);
-        tablePanel.add(informationCategory);
-        tablePanel.add(informationDescription);
-        tablePanel.add(informationPrice);
-        tablePanel.add(informationQuantity);
+        for (InformationPanel informationPanel : informationPanels) {
+            tablePanel.add(informationPanel);
+        }
 
         // add toolbar panel and information panels to dialog
         add(toolBarPanel, BorderLayout.PAGE_START);
         add(tablePanel, BorderLayout.LINE_END);
 
         pack();
-    }
-
-    private void databaseConnection() {
-        String url = "jdbc:mysql://localhost:3306";
-        String user = "root";
-        String password = "secret";
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            String message = "\"com.mysql.cj.jdbc.Driver\" is missing.";
-            JOptionPane.showMessageDialog(this, message, this.getTitle(), JOptionPane.ERROR_MESSAGE);
-            System.exit(1);
-        }
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            String message = "Error connecting to database:\n" + e.getMessage();
-            JOptionPane.showMessageDialog(this, message, this.getTitle(), JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     public void prepareForm() {
@@ -121,11 +102,9 @@ public class FilesDialogInventory extends BaseDialog {
             } else {
                 currentIndex = 0;
             }
-            informationID.setEditable(false);
-            informationCategory.setEditable(false);
-            informationDescription.setEditable(false);
-            informationPrice.setEditable(false);
-            informationQuantity.setEditable(false);
+            for (InformationPanel informationPanel : informationPanels) {
+                informationPanel.setEditable(false);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -152,10 +131,9 @@ public class FilesDialogInventory extends BaseDialog {
     }
 
     private void doAdd() {
-        informationCategory.setEditable(true);
-        informationDescription.setEditable(true);
-        informationPrice.setEditable(true);
-        informationQuantity.setEditable(true);
+        for (int i = 1; i < informationPanels.length; i++) {
+            informationPanels[i].setEditable(true);
+        }
         buttonOK.setEnabled(true);
     }
 
@@ -189,11 +167,9 @@ public class FilesDialogInventory extends BaseDialog {
             doLast();
         }
         currentIndex += 1;
-        // informationID.setEditable(false);
-        informationCategory.setEditable(false);
-        informationDescription.setEditable(false);
-        informationPrice.setEditable(false);
-        informationQuantity.setEditable(false);
+        for (int i = 1; i < informationPanels.length; i++) {
+            informationPanels[i].setEditable(false);
+        }
         buttonOK.setEnabled(false);
     }
 
@@ -210,10 +186,9 @@ public class FilesDialogInventory extends BaseDialog {
                 System.out.println("doRegister: " + e.getMessage());
             }
         }
-        informationCategory.setEditable(true);
-        informationDescription.setEditable(true);
-        informationPrice.setEditable(true);
-        informationQuantity.setEditable(true);
+        for (int i = 1; i < informationPanels.length; i++) {
+            informationPanels[i].setEditable(true);
+        }
     }
 
     private void doDelete() {
@@ -244,11 +219,9 @@ public class FilesDialogInventory extends BaseDialog {
     }
 
     private void clearInformation() {
-        informationID.setText(null);
-        informationCategory.setText(null);
-        informationDescription.setText(null);
-        informationPrice.setText(null);
-        informationQuantity.setText(null);
+        for (InformationPanel informationPanel : informationPanels) {
+            informationPanel.setText(null);
+        }
     }
 
     private void updateDatabase() {
@@ -267,36 +240,6 @@ public class FilesDialogInventory extends BaseDialog {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    public void closeDatabase(ResultSet resultSet, Statement statement, Connection connection) {
-        if (resultSet != null) {
-            try {
-                if (!resultSet.isClosed()) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (statement != null) {
-            try {
-                if (!statement.isClosed()) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (connection != null) {
-            try {
-                if (!connection.isClosed()) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

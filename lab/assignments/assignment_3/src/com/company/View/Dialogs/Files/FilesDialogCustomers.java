@@ -13,6 +13,9 @@ public class FilesDialogCustomers extends BaseDialog {
     private final InformationPanel informationFirstName = new InformationPanel("First Name:");
     private final InformationPanel informationTRN = new InformationPanel("TRN:");
     private final InformationPanel informationPhoneNumber = new InformationPanel("Phone Number:");
+    private final InformationPanel[] informationPanels = {
+            informationID, informationLastName, informationFirstName, informationTRN, informationPhoneNumber
+    };
     private final JButton buttonFirst = new JButton("First");
     private final JButton buttonPrevious = new JButton("Previous");
     private final JButton buttonNext = new JButton("Next");
@@ -22,7 +25,6 @@ public class FilesDialogCustomers extends BaseDialog {
     private final JButton buttonDelete = new JButton("Delete");
     private final JButton buttonOK = new JButton("OK");
     private final JButton buttonCancel = new JButton("Cancel");
-    private Connection connection = null;
     private ResultSet resultSet = null;
     private Statement statement;
     private String query;
@@ -78,11 +80,9 @@ public class FilesDialogCustomers extends BaseDialog {
         toolBarPanel.add(toolBar);
 
         // add information panels to information panel
-        tablePanel.add(informationID);
-        tablePanel.add(informationLastName);
-        tablePanel.add(informationFirstName);
-        tablePanel.add(informationTRN);
-        tablePanel.add(informationPhoneNumber);
+        for (InformationPanel informationPanel : informationPanels) {
+            tablePanel.add(informationPanel);
+        }
 
         // add toolbar panel and information panels to dialog
         add(toolBarPanel, BorderLayout.PAGE_START);
@@ -91,24 +91,6 @@ public class FilesDialogCustomers extends BaseDialog {
         pack();
     }
 
-    private void databaseConnection() {
-        String url = "jdbc:mysql://localhost:3306";
-        String user = "root";
-        String password = "secret";
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            String message = "\"com.mysql.cj.jdbc.Driver\" is missing.";
-            JOptionPane.showMessageDialog(this, message, this.getTitle(), JOptionPane.ERROR_MESSAGE);
-            System.exit(1);
-        }
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            String message = "Error connecting to database:\n" + e.getMessage();
-            JOptionPane.showMessageDialog(this, message, this.getTitle(), JOptionPane.ERROR_MESSAGE);
-        }
-    }
 
     public void prepareForm() {
         try {
@@ -121,11 +103,9 @@ public class FilesDialogCustomers extends BaseDialog {
             } else {
                 currentIndex = 0;
             }
-            informationID.setEditable(false);
-            informationLastName.setEditable(false);
-            informationFirstName.setEditable(false);
-            informationTRN.setEditable(false);
-            informationPhoneNumber.setEditable(false);
+            for (InformationPanel informationPanel : informationPanels) {
+                informationPanel.setEditable(false);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -152,10 +132,9 @@ public class FilesDialogCustomers extends BaseDialog {
     }
 
     private void doAdd() {
-        informationLastName.setEditable(true);
-        informationFirstName.setEditable(true);
-        informationTRN.setEditable(true);
-        informationPhoneNumber.setEditable(true);
+        for (int i = 1; i < informationPanels.length; i++) {
+            informationPanels[i].setEditable(true);
+        }
         buttonOK.setEnabled(true);
     }
 
@@ -189,11 +168,9 @@ public class FilesDialogCustomers extends BaseDialog {
             doLast();
         }
         currentIndex += 1;
-        // informationID.setEditable(false);
-        informationLastName.setEditable(false);
-        informationFirstName.setEditable(false);
-        informationTRN.setEditable(false);
-        informationPhoneNumber.setEditable(false);
+        for (int i = 1; i < informationPanels.length; i++) {
+            informationPanels[i].setEditable(false);
+        }
         buttonOK.setEnabled(false);
     }
 
@@ -210,10 +187,9 @@ public class FilesDialogCustomers extends BaseDialog {
                 System.out.println("doRegister: " + e.getMessage());
             }
         }
-        informationLastName.setEditable(true);
-        informationFirstName.setEditable(true);
-        informationTRN.setEditable(true);
-        informationPhoneNumber.setEditable(true);
+        for (int i = 1; i < informationPanels.length; i++) {
+            informationPanels[i].setEditable(true);
+        }
     }
 
     private void doDelete() {
@@ -244,11 +220,9 @@ public class FilesDialogCustomers extends BaseDialog {
     }
 
     private void clearInformation() {
-        informationID.setText(null);
-        informationLastName.setText(null);
-        informationFirstName.setText(null);
-        informationTRN.setText(null);
-        informationPhoneNumber.setText(null);
+        for (InformationPanel informationPanel : informationPanels) {
+            informationPanel.setText(null);
+        }
     }
 
     private void updateDatabase() {
@@ -267,36 +241,6 @@ public class FilesDialogCustomers extends BaseDialog {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    public void closeDatabase(ResultSet resultSet, Statement statement, Connection connection) {
-        if (resultSet != null) {
-            try {
-                if (!resultSet.isClosed()) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (statement != null) {
-            try {
-                if (!statement.isClosed()) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (connection != null) {
-            try {
-                if (!connection.isClosed()) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
