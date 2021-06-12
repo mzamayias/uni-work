@@ -8,9 +8,18 @@ public class BaseDialog extends JDialog {
     protected Connection connection = null;
 
     public BaseDialog() {
+        setPreferredSize(new Dimension(390, 270));
+        prepareBaseDialog();
+    }
+
+    public BaseDialog(Dimension dimension) {
+        setPreferredSize(dimension);
+        prepareBaseDialog();
+    }
+
+    private void prepareBaseDialog(){
 //        setAlwaysOnTop(true);
         setLayout(new BorderLayout(6, 3));
-        setPreferredSize(new Dimension(390, 270));
         setVisible(true);
         setResizable(false);
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // setModal(true); is deprecated
