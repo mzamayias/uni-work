@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InformationPanel extends JPanel {
+    private final JLabel label = new JLabel();
+    private final JTextField textField = new JTextField();
+
     public InformationPanel(String elementName) {
         prepareElementPanel(elementName);
     }
@@ -11,11 +14,23 @@ public class InformationPanel extends JPanel {
     private void prepareElementPanel(String elementName) {
         setLayout(new GridLayout(1, 2));
 
-        JLabel label = new JLabel(elementName, SwingConstants.RIGHT);
+        label.setText(elementName);
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
         add(label);
 
-        JTextField textField = new JTextField();
         textField.setPreferredSize(new Dimension(270, 12));
         add(textField);
+    }
+
+    public void setEditable(boolean editable) {
+        textField.setEditable(editable);
+    }
+
+    public void setText(String text) {
+        textField.setText(text);
+    }
+
+    public String getText() throws NullPointerException {
+        return textField.getText();
     }
 }

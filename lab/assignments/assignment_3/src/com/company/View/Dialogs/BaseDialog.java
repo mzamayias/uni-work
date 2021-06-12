@@ -5,7 +5,8 @@ import java.awt.*;
 
 public class BaseDialog extends JDialog {
     public BaseDialog() {
-        setLayout(new BorderLayout());
+        setAlwaysOnTop(true);
+        setLayout(new BorderLayout(6, 3));
         setVisible(true);
         setResizable(false);
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
