@@ -5,8 +5,8 @@ import com.company.View.Dialogs.BaseDialog;
 import javax.swing.*;
 import java.awt.*;
 
-public class OrdersDialogMakeOrder extends BaseDialog {
-    public OrdersDialogMakeOrder() {
+public class OrdersDialogPlaceOrder extends BaseDialog {
+    public OrdersDialogPlaceOrder() {
         JPanel jPanel = new JPanel();
 
         jPanel.setLayout(new FlowLayout());
