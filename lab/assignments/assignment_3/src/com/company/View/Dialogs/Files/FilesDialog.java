@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class FilesDialog extends BaseDialog {
-    protected static final InformationTextField[] informationTextFields = new InformationTextField[5];
     protected final JButton buttonFirst = new JButton("First");
     protected final JButton buttonPrevious = new JButton("Previous");
     protected final JButton buttonNext = new JButton("Next");
@@ -22,6 +21,7 @@ public class FilesDialog extends BaseDialog {
     protected final JButton buttonCancel = new JButton("Cancel");
     protected ResultSet resultSet = null;
     protected Statement statement;
+    protected static final InformationTextField[] informationTextFields = new InformationTextField[5];
     protected static String[] columnNames = new String[5];
     protected int currentIndex = 0;
     protected int mode = 0;
