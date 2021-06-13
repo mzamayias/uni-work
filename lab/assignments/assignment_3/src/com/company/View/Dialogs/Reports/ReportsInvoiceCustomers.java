@@ -58,7 +58,7 @@ public class ReportsInvoiceCustomers extends BaseDialog {
             System.out.println();
             while (resultSet.next()) {
                 System.out.printf(
-                        "%6s %-20s %-20s %-20s %-20s\n",
+                        "%6s  %-20s %-20s %-20s %-20s\n",
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),

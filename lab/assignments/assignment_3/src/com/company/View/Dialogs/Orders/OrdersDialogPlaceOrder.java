@@ -2,6 +2,7 @@ package com.company.View.Dialogs.Orders;
 
 import com.company.View.Dialogs.BaseDialog;
 import com.company.View.Dialogs.InformationTextField;
+import com.company.View.Dialogs.UniversalComboBox;
 
 import javax.swing.*;
 import java.awt.*;
