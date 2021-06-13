@@ -175,12 +175,16 @@ public class FilesDialog extends BaseDialog {
         closeDatabase(resultSet, statement, connection);
     }
 
-    private void currentIndexCheck() {
+    private void currentIndexCheck(String action) {
         if (currentIndex > 0) {
             try {
                 currentIndex = resultSet.getInt(1);
+                if (action.equals("DELETE")) {
+                    resultSet.deleteRow();
+                }
+                showInformation();
             } catch (SQLException e) {
-                System.out.println("doRegister: " + e.getMessage());
+                JOptionPane.showMessageDialog(this, e.getMessage());
             }
         }
         for (int i = 1; i < informationPanels.length; i++) {
@@ -190,7 +194,7 @@ public class FilesDialog extends BaseDialog {
 
     private void doDelete() {
         mode = 0;
-        currentIndexCheck();
+        currentIndexCheck("DELETE");
         clearInformation();
         buttonOK.setEnabled(true);
         buttonCancel.setEnabled(true);
@@ -198,7 +202,7 @@ public class FilesDialog extends BaseDialog {
 
     private void doModify() {
         mode = 1;
-        currentIndexCheck();
+        currentIndexCheck("MODIFY");
         buttonOK.setEnabled(true);
         buttonCancel.setEnabled(true);
     }
