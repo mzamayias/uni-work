@@ -8,7 +8,7 @@ public class FilesDialogInventory extends FilesDialog {
             "Category:",
             "Description:",
             "Price:",
-            "Quantit:y"
+            "Quantity:"
     };
     static String[] tableCharacteristics = {
             "inventory_id",
