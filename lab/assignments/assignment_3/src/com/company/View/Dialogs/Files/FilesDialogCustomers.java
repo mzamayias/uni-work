@@ -8,7 +8,7 @@ public class FilesDialogCustomers extends FilesDialog {
             "Last Name:",
             "First Name:",
             "TRN:",
-            "Phone :Number"
+            "Phone Number:"
     };
     static String[] tableCharacteristics = {
             "customer_id",
