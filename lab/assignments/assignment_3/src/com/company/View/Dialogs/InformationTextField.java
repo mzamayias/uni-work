@@ -3,11 +3,11 @@ package com.company.View.Dialogs;
 import javax.swing.*;
 import java.awt.*;
 
-public class InformationPanel extends JPanel {
+public class InformationTextField extends JPanel {
     private final JLabel label = new JLabel();
     private final JTextField textField = new JTextField();
 
-    public InformationPanel(String elementName) {
+    public InformationTextField(String elementName) {
         prepareElementPanel(elementName);
     }
 

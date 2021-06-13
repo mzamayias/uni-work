@@ -1,7 +1,7 @@
 package com.company.View.Dialogs.Files;
 
 import com.company.View.Dialogs.BaseDialog;
-import com.company.View.Dialogs.InformationPanel;
+import com.company.View.Dialogs.InformationTextField;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class FilesDialog extends BaseDialog {
-    protected static final InformationPanel[] informationPanels = new InformationPanel[5];
+    protected static final InformationTextField[] informationTextFields = new InformationTextField[5];
     protected final JButton buttonFirst = new JButton("First");
     protected final JButton buttonPrevious = new JButton("Previous");
     protected final JButton buttonNext = new JButton("Next");
@@ -42,8 +42,8 @@ public class FilesDialog extends BaseDialog {
                 buttonLast, buttonAdd, buttonModify,
                 buttonDelete, buttonOK, buttonCancel
         };
-        for (int i = 0; i < informationPanels.length; i++) {
-            informationPanels[i] = new InformationPanel(informationElements[i]);
+        for (int i = 0; i < informationTextFields.length; i++) {
+            informationTextFields[i] = new InformationTextField(informationElements[i]);
         }
         FilesDialog.columnNames = columnNames;
 
@@ -79,8 +79,8 @@ public class FilesDialog extends BaseDialog {
         toolBarPanel.add(toolBar);
 
         // add information panels to information panel
-        for (InformationPanel informationPanel : informationPanels) {
-            tablePanel.add(informationPanel);
+        for (InformationTextField informationTextField : informationTextFields) {
+            tablePanel.add(informationTextField);
         }
 
         // add toolbar panel and information panels to dialog
@@ -100,8 +100,8 @@ public class FilesDialog extends BaseDialog {
             } else {
                 currentIndex = 0;
             }
-            for (InformationPanel informationPanel : informationPanels) {
-                informationPanel.setEditable(false);
+            for (InformationTextField informationTextField : informationTextFields) {
+                informationTextField.setEditable(false);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -129,8 +129,8 @@ public class FilesDialog extends BaseDialog {
     }
 
     private void doAdd() {
-        for (int i = 1; i < informationPanels.length; i++) {
-            informationPanels[i].setEditable(true);
+        for (int i = 1; i < informationTextFields.length; i++) {
+            informationTextFields[i].setEditable(true);
         }
         buttonOK.setEnabled(true);
     }
@@ -165,8 +165,8 @@ public class FilesDialog extends BaseDialog {
             doLast();
         }
         currentIndex += 1;
-        for (int i = 1; i < informationPanels.length; i++) {
-            informationPanels[i].setEditable(false);
+        for (int i = 1; i < informationTextFields.length; i++) {
+            informationTextFields[i].setEditable(false);
         }
         buttonOK.setEnabled(false);
     }
@@ -188,8 +188,8 @@ public class FilesDialog extends BaseDialog {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
         }
-        for (int i = 1; i < informationPanels.length; i++) {
-            informationPanels[i].setEditable(true);
+        for (int i = 1; i < informationTextFields.length; i++) {
+            informationTextFields[i].setEditable(true);
         }
     }
 
@@ -210,9 +210,9 @@ public class FilesDialog extends BaseDialog {
 
     private void showInformation() {
         try {
-            informationPanels[0].setText(String.valueOf(resultSet.getInt(columnNames[0])));
+            informationTextFields[0].setText(String.valueOf(resultSet.getInt(columnNames[0])));
             for (int i = 1; i < columnNames.length; i++) {
-                informationPanels[i].setText(String.valueOf(resultSet.getString(columnNames[i])));
+                informationTextFields[i].setText(String.valueOf(resultSet.getString(columnNames[i])));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -220,8 +220,8 @@ public class FilesDialog extends BaseDialog {
     }
 
     private void clearInformation() {
-        for (InformationPanel informationPanel : informationPanels) {
-            informationPanel.setText(null);
+        for (InformationTextField informationTextField : informationTextFields) {
+            informationTextField.setText(null);
         }
     }
 
@@ -231,7 +231,7 @@ public class FilesDialog extends BaseDialog {
                 resultSet.moveToInsertRow();
             }
             for (int i = 1; i < columnNames.length; i++) {
-                resultSet.updateString(columnNames[i], informationPanels[i].getText());
+                resultSet.updateString(columnNames[i], informationTextFields[i].getText());
             }
             if (mode == 0) {
                 resultSet.insertRow();
