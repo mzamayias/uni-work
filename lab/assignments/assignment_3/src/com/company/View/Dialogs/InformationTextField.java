@@ -18,7 +18,7 @@ public class InformationTextField extends JPanel {
         label.setHorizontalAlignment(SwingConstants.RIGHT);
         add(label);
 
-        textField.setPreferredSize(new Dimension(270, 12));
+        textField.setPreferredSize(new Dimension(270, 15));
         add(textField);
     }
 
