@@ -1,7 +1,8 @@
 package com.company.View.Dialogs.Orders;
 
 import com.company.View.Dialogs.BaseDialog;
-import com.company.View.Dialogs.InformationPanel;
+import com.company.View.Dialogs.InformationComboBox;
+import com.company.View.Dialogs.InformationTextField;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,25 +19,29 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
 
     private void prepareBaseDialog() {
         // initialize and declare objects
-        JPanel upperPanel = new JPanel(new GridLayout(5,1));
+        JPanel upperPanel = new JPanel(new GridLayout(5, 1));
         JPanel lowerPanel = new JPanel(new FlowLayout());
         JTable table = new JTable(new OrdersDialogModel());
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, upperPanel, lowerPanel);
         JScrollPane scrollPane = new JScrollPane(table);
-        InformationPanel informationCustomer = new InformationPanel("Customer:");
-        InformationPanel informationInventoryItem = new InformationPanel("Inventory Item:");
-        InformationPanel informationItemPrice = new InformationPanel("Item Price:");
-        InformationPanel informationQuantity = new InformationPanel("Quantity:");
-        InformationPanel InformationTotalPrice = new InformationPanel("Total Price:");
-        InformationPanel[] informationPanels = {
-                informationCustomer, informationInventoryItem, informationItemPrice,
-                informationQuantity, InformationTotalPrice
+        InformationComboBox informationCustomer = new InformationComboBox("Customer:");
+        InformationComboBox informationInventoryItem = new InformationComboBox("Inventory Item:");
+        InformationTextField informationItemPrice = new InformationTextField("Item Price:");
+        InformationTextField informationQuantity = new InformationTextField("Quantity:");
+        InformationTextField InformationTotalPrice = new InformationTextField("Total Price:");
+        InformationComboBox[] informationComboBoxes = {
+                informationCustomer, informationInventoryItem,
+        };
+        InformationTextField[] informationTextFields = {
+                informationItemPrice, informationQuantity, InformationTotalPrice
         };
 
         // change table headers
         for (int i = 0; i < informationElements.length; i++) {
             table.getColumnModel().getColumn(i).setHeaderValue(informationElements[i]);
         }
+
+        // make information panels not editable
 
         // add mouse actions to the table
         table.addMouseListener(new MouseAdapter() {
@@ -54,8 +59,11 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
         });
 
         // add information panels to upper panel
-        for (InformationPanel informationPanel : informationPanels) {
-            upperPanel.add(informationPanel);
+        for (InformationComboBox informationComboBox : informationComboBoxes) {
+            upperPanel.add(informationComboBox);
+        }
+        for (InformationTextField informationTextField : informationTextFields) {
+            upperPanel.add(informationTextField);
         }
 
         // add scroll pane in lower panel
