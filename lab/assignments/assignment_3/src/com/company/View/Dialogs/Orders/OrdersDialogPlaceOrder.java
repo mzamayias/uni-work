@@ -14,19 +14,20 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
 
     public OrdersDialogPlaceOrder() {
         super(new Dimension(480, 510));
-        prepareBaseDialog();
+        improveBaseDialog();
     }
 
-    private void prepareBaseDialog() {
+    private void improveBaseDialog() {
         // initialize and declare objects
-        String[] customerColumnNames = {
+        String customersQuery = "SELECT * FROM inventory_logistics.customers";
+        String[] customersColumnNames = {
                 "customer_id",
                 "last_name",
                 "first_name",
                 "trn",
                 "phone_number"
         };
-        String customerQuery = "SELECT * FROM inventory_logistics.customers";
+        String inventoryQuery = "SELECT * FROM inventory_logistics.inventory";
         String[] inventoryColumnNames = {
                 "inventory_id",
                 "category",
@@ -34,7 +35,6 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
                 "price",
                 "quantity"
         };
-        String inventoryQuery = "SELECT * FROM inventory_logistics.inventory";
         JPanel upperPanel = new JPanel(new GridLayout(6, 1));
         JPanel lowerPanel = new JPanel(new FlowLayout());
         JPanel upperButtonsPanel = new JPanel(new GridLayout(1, 2));
@@ -44,13 +44,13 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
         JTable table = new JTable(new OrdersDialogModel());
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, upperPanel, lowerPanel);
         JScrollPane scrollPane = new JScrollPane(table);
-        InformationComboBox informationCustomer = new InformationComboBox(
+        InformationComboBox informationCustomers = new InformationComboBox(
                 "Customer:",
-                customerQuery,
-                customerColumnNames
+                customersQuery,
+                customersColumnNames
         );
         InformationComboBox informationInventoryItem = new InformationComboBox(
-                "Inventory Item:",
+                "Inventory:",
                 inventoryQuery,
                 inventoryColumnNames
         );
@@ -58,7 +58,7 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
         InformationTextField informationQuantity = new InformationTextField("Quantity:");
         InformationTextField InformationTotalPrice = new InformationTextField("Total Price:");
         InformationComboBox[] informationComboBoxes = {
-                informationCustomer, informationInventoryItem,
+                informationCustomers, informationInventoryItem,
         };
         InformationTextField[] informationTextFields = {
                 informationItemPrice, informationQuantity, InformationTotalPrice
@@ -70,6 +70,9 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
         }
 
         // make information panels not editable
+        for (InformationTextField informationTextField : informationTextFields) {
+            informationTextField.setEditable(false);
+        }
 
         // add mouse actions to the table
         table.addMouseListener(new MouseAdapter() {
@@ -115,5 +118,8 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
         pack();
         setTitle("Place Order");
         setVisible(true);
+
+        // set button actions
+        buttonExit.addActionListener(l -> setVisible(false));
     }
 }

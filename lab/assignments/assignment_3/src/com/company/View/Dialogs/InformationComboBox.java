@@ -1,6 +1,6 @@
 package com.company.View.Dialogs;
 
-import com.company.View.Dialogs.Orders.CustomComboBoxModel;
+import com.company.View.Dialogs.Orders.InformationComboBoxModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,9 +28,8 @@ public class InformationComboBox extends JPanel {
 
         // combobox preferences
         comboBox.setPreferredSize(new Dimension(270, 12));
-        comboBox.setModel(new CustomComboBoxModel(connection, query, columnNames));
+        comboBox.setModel(new InformationComboBoxModel(connection, query, columnNames));
         comboBox.setSelectedIndex(0);
-        comboBox.addActionListener(l -> refreshLabel());
 
         // add label and combobox to panel
         add(label);
@@ -54,9 +53,5 @@ public class InformationComboBox extends JPanel {
             String message = "Error connecting to database:\n" + e.getMessage();
             JOptionPane.showMessageDialog(this, message, "Database Connection", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    private void refreshLabel() {
-        label.setText((String) comboBox.getSelectedItem());
     }
 }
