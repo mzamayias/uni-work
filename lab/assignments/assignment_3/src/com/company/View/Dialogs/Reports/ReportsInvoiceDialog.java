@@ -57,7 +57,7 @@ public class ReportsInvoiceDialog extends BaseDialog {
         try {
             System.out.printf("%s REPORT%n", table.toUpperCase());
             System.out.printf(
-                    "%6s %-20s %-20s %-20s %-20s\n",
+                    "%5s %-20s%-20s%-20s%-20s\n",
                     columnNames[0],
                     columnNames[1],
                     columnNames[2],
@@ -76,7 +76,7 @@ public class ReportsInvoiceDialog extends BaseDialog {
         System.out.println();
         while (resultSet.next()) {
             System.out.printf(
-                    "%6s  %-20s %-20s %-20s %-20s\n",
+                    "%5s %-20s%-20s%-20s%-20s\n",
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
