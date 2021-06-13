@@ -11,7 +11,6 @@ public class TableModel extends AbstractTableModel {
             " LEFT JOIN inventory_logistics.customers ON customers.customer_id=orders.customer_id" +
             " LEFT JOIN inventory_logistics.inventory ON inventory.inventory_id=orders.inventory_id";
     protected static String[] columnNames = {"order_id", "customer_id", "inventory_id", "quantity", "price"};
-    protected static String[] informationElements = {"ID", "Customer", "Category", "Description", "Price"};
 
     public TableModel() {
         String url = "jdbc:mysql://localhost:3306";

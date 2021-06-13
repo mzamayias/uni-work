@@ -9,6 +9,7 @@ import java.sql.SQLException;
 public class UniversalComboBox extends JPanel {
     private final JLabel label = new JLabel();
     private final JComboBox<String> comboBox = new JComboBox<>();
+    private Connection connection;
 
     public UniversalComboBox(String elementName, DefaultComboBoxModel<String> comboBoxModel) {
         databaseConnection();
@@ -52,7 +53,7 @@ public class UniversalComboBox extends JPanel {
             System.exit(1);
         }
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             String message = "Error connecting to database:\n" + e.getMessage();
             JOptionPane.showMessageDialog(

@@ -17,7 +17,7 @@ public class CustomerComboModel extends DefaultComboBoxModel<String> {
             );
             resultSet = statement.executeQuery("SELECT * FROM inventory_logistics.customers;");
         } catch (SQLException e) {
-            System.out.println("error querying customers table in customercombomodel");
+            System.out.println("error querying customers table in CustomerComboModel");
             e.printStackTrace();
         }
     }
@@ -48,21 +48,9 @@ public class CustomerComboModel extends DefaultComboBoxModel<String> {
             resultSet.last();
             counter = resultSet.getRow();
         } catch (SQLException e) {
-            System.out.println("error counting in customercombomodel");
+            System.out.println("error counting in CustomerComboModel");
             e.printStackTrace();
         }
         return counter;
-    }
-
-    public int getCustomerID(int index) {
-        int customer_id = 0;
-        try {
-            resultSet.absolute(index+1);
-            customer_id = resultSet.getInt("customer_id");
-        } catch (SQLException e) {
-            System.out.println("error getting customer id in customercombomodel");
-            e.printStackTrace();
-        }
-        return customer_id;
     }
 }
