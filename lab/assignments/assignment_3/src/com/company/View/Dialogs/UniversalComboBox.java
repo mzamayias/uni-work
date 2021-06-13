@@ -63,7 +63,8 @@ public class UniversalComboBox extends JPanel {
         }
     }
 
-    public String getSelectedItem(){
-        return (String) comboBox.getSelectedItem();
+    public String[] getSelectedItemIndex() {
+        // jerry rigged, but it works fine
+        return "%s".formatted(comboBox.getSelectedItem()).split(",");
     }
 }
