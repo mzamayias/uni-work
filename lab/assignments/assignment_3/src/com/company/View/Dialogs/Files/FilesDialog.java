@@ -1,6 +1,7 @@
 package com.company.View.Dialogs.Files;
 
 import com.company.View.Dialogs.BaseDialog;
+import com.company.View.Dialogs.InformationPanel;
 
 import javax.swing.*;
 import java.awt.*;
