@@ -28,7 +28,6 @@ public class UniversalComboBox extends JPanel {
         comboBox.setModel(comboBoxModel);
         comboBox.setEditable(false);
         comboBox.setSelectedIndex(0);
-        System.out.printf("%s, %s%n", elementName, comboBox.getSelectedIndex());
 
         // add label and combobox to panel
         add(label);
@@ -62,5 +61,9 @@ public class UniversalComboBox extends JPanel {
                     JOptionPane.ERROR_MESSAGE
             );
         }
+    }
+
+    public String getSelectedItem(){
+        return (String) comboBox.getSelectedItem();
     }
 }
