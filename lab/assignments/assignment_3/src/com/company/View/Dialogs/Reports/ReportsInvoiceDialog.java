@@ -7,7 +7,6 @@ import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Locale;
 
 public class ReportsInvoiceDialog extends BaseDialog {
     private static String table;
@@ -56,7 +55,7 @@ public class ReportsInvoiceDialog extends BaseDialog {
             e.printStackTrace();
         }
         try {
-            System.out.printf("%s REPORT%n", table.toUpperCase(Locale.ROOT));
+            System.out.printf("%s REPORT%n", table.toUpperCase());
             System.out.printf(
                     "%6s %-20s %-20s %-20s %-20s\n",
                     columnNames[0],
