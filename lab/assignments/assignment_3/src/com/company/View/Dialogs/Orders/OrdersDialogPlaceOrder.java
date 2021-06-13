@@ -5,7 +5,6 @@ import com.company.View.Dialogs.InformationComboBox;
 import com.company.View.Dialogs.InformationTextField;
 
 import javax.swing.*;
-import javax.swing.text.FlowView;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
