@@ -18,7 +18,7 @@ public class BaseDialog extends JDialog {
     }
 
     private void prepareBaseDialog(){
-//        setAlwaysOnTop(true);
+        setAlwaysOnTop(true);
         setLayout(new BorderLayout(6, 3));
         setVisible(true);
         setResizable(false);
