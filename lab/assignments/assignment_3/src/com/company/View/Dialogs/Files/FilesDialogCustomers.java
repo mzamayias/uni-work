@@ -4,11 +4,11 @@ public class FilesDialogCustomers extends FilesDialog {
     // initialize and declare objects
     static String title = "Customer";
     static String[] informationElements = {
-            "ID",
-            "Last Name",
-            "First Name",
-            "TRN",
-            "Phone Number"
+            "ID:",
+            "Last Name:",
+            "First Name:",
+            "TRN:",
+            "Phone :Number"
     };
     static String[] tableCharacteristics = {
             "customer_id",

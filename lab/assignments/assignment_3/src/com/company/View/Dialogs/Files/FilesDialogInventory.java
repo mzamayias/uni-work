@@ -4,11 +4,11 @@ public class FilesDialogInventory extends FilesDialog {
     // initialize and declare objects
     static String title = "Inventory";
     static String[] informationElements = {
-            "ID",
-            "Category",
-            "Description",
-            "Price",
-            "Quantity"
+            "ID:",
+            "Category:",
+            "Description:",
+            "Price:",
+            "Quantit:y"
     };
     static String[] tableCharacteristics = {
             "inventory_id",
