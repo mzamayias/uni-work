@@ -25,7 +25,6 @@ public class UniversalComboBox extends JPanel {
         label.setHorizontalAlignment(SwingConstants.RIGHT);
 
         // combobox preferences
-        comboBox.setPreferredSize(new Dimension(300, 15));
         comboBox.setModel(comboBoxModel);
         comboBox.setEditable(false);
         comboBox.setSelectedIndex(0);
