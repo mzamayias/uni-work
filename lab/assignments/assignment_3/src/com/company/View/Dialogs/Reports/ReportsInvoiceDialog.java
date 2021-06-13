@@ -10,14 +10,14 @@ import java.sql.Statement;
 
 public class ReportsInvoiceDialog extends BaseDialog {
     private static String table;
-    private static String[] columnNames = new String[5];
+    private static String[] tableColumns = new String[5];
     private ResultSet resultSet = null;
 
-    public ReportsInvoiceDialog(String table, String[] columnNames) {
+    public ReportsInvoiceDialog(String tableName, String[] tableColumns) {
         super(new Dimension(240, 69));
         databaseConnection();
-        ReportsInvoiceDialog.table = table;
-        ReportsInvoiceDialog.columnNames = columnNames;
+        ReportsInvoiceDialog.table = tableName;
+        ReportsInvoiceDialog.tableColumns = tableColumns;
         improveBaseDialog();
     }
 
@@ -58,11 +58,11 @@ public class ReportsInvoiceDialog extends BaseDialog {
             System.out.printf("%s REPORT%n", table.toUpperCase());
             System.out.printf(
                     "%5s %-20s%-20s%-20s%-20s\n",
-                    columnNames[0],
-                    columnNames[1],
-                    columnNames[2],
-                    columnNames[3],
-                    columnNames[4]
+                    tableColumns[0],
+                    tableColumns[1],
+                    tableColumns[2],
+                    tableColumns[3],
+                    tableColumns[4]
             );
             prettyPrint(resultSet);
         } catch (SQLException e) {

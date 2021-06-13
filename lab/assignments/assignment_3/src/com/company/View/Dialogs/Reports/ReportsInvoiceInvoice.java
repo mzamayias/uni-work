@@ -5,9 +5,16 @@ import com.company.View.Dialogs.UniversalComboBox;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ReportsInvoiceInvoice extends BaseDialog {
     private UniversalComboBox informationCustomers;
+    private ResultSet resultSet = null;
+    protected static String[] tableColumns = {
+            "orders.order_id", "inventory.category", "inventory.description", "inventory.quantity", "inventory.price"
+    };
 
     public ReportsInvoiceInvoice() {
         super(new Dimension(309, 99));
@@ -63,8 +70,48 @@ public class ReportsInvoiceInvoice extends BaseDialog {
         for (int i = 0; i < 84; i++)
             System.out.print("=");
         System.out.println();
+        executeQuery(customerID);
         for (int i = 0; i < 84; i++)
             System.out.print("=");
         System.out.println();
+    }
+
+    private String getQuery(String customerID) {
+        return """
+                 SELECT
+                 *
+                 FROM inventory_logistics.orders
+                          LEFT JOIN inventory_logistics.customers ON customers.customer_id = orders.customer_id
+                          LEFT JOIN inventory_logistics.inventory ON inventory.inventory_id = orders.inventory_id
+                 WHERE
+                          customers.customer_id = %s
+                """.formatted(customerID);
+    }
+
+    public void executeQuery(String customerID) {
+        try {
+            Statement statement = connection.createStatement(
+                    ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE
+            );
+            resultSet = statement.executeQuery(getQuery(customerID));
+        } catch (SQLException e) {
+            System.out.printf("error querying in ReportsInvoiceInvoice%n");
+            e.printStackTrace();
+        }
+        try {
+            while (resultSet.next()) {
+                System.out.printf(
+                        "%5s %-20s%-20s%-20s%-20s\n",
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5)
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
