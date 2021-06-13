@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class InformationComboBox extends JPanel {
     private final JLabel label = new JLabel();
-    private final JComboBox<String> comboBox = new JComboBox<String>();
+    private final JComboBox<String> comboBox = new JComboBox<>();
 
     public InformationComboBox(String elementName) {
         prepareElementPanel(elementName);
@@ -20,9 +20,5 @@ public class InformationComboBox extends JPanel {
 
         comboBox.setPreferredSize(new Dimension(270, 12));
         add(comboBox);
-    }
-
-    public void setEditable(boolean editable) {
-        comboBox.setEditable(editable);
     }
 }
