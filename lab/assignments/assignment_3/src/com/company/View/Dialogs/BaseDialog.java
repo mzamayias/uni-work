@@ -17,7 +17,7 @@ public class BaseDialog extends JDialog {
         prepareBaseDialog();
     }
 
-    private void prepareBaseDialog(){
+    private void prepareBaseDialog() {
         setAlwaysOnTop(true);
         setLayout(new BorderLayout(6, 3));
         setVisible(true);
@@ -27,7 +27,7 @@ public class BaseDialog extends JDialog {
         pack();
     }
 
-    protected void databaseConnection() {
+    public void databaseConnection() {
         String url = "jdbc:mysql://localhost:3306";
         String user = "root";
         String password = "secret";
@@ -35,14 +35,24 @@ public class BaseDialog extends JDialog {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             String message = "\"com.mysql.cj.jdbc.Driver\" is missing.";
-            JOptionPane.showMessageDialog(this, message, this.getTitle(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this,
+                    message,
+                    this.getTitle(),
+                    JOptionPane.ERROR_MESSAGE
+            );
             System.exit(1);
         }
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             String message = "Error connecting to database:\n" + e.getMessage();
-            JOptionPane.showMessageDialog(this, message, this.getTitle(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this,
+                    message,
+                    this.getTitle(),
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 

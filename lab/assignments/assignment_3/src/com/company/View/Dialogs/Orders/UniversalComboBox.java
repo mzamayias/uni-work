@@ -1,6 +1,4 @@
-package com.company.View.Dialogs;
-
-import com.company.View.Dialogs.Orders.InformationComboBoxModel;
+package com.company.View.Dialogs.Orders;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,17 +6,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class InformationComboBox extends JPanel {
+public class UniversalComboBox extends JPanel {
     private final JLabel label = new JLabel();
     private final JComboBox<String> comboBox = new JComboBox<>();
-    private Connection connection;
 
-    public InformationComboBox(String elementName, String query, String[] columnNames) {
+    public UniversalComboBox(String elementName, DefaultComboBoxModel<String> comboBoxModel) {
         databaseConnection();
-        prepareElementPanel(elementName, query, columnNames);
+        prepareElementPanel(elementName, comboBoxModel);
     }
 
-    private void prepareElementPanel(String elementName, String query, String[] columnNames) {
+    private void prepareElementPanel(String elementName, DefaultComboBoxModel<String> comboBoxModel) {
         // panel preferences
         setLayout(new GridLayout(1, 2));
 
@@ -27,16 +24,18 @@ public class InformationComboBox extends JPanel {
         label.setHorizontalAlignment(SwingConstants.RIGHT);
 
         // combobox preferences
-        comboBox.setPreferredSize(new Dimension(270, 12));
-        comboBox.setModel(new InformationComboBoxModel(connection, query, columnNames));
+        comboBox.setPreferredSize(new Dimension(300, 15));
+        comboBox.setModel(comboBoxModel);
+        comboBox.setEditable(false);
         comboBox.setSelectedIndex(0);
+        System.out.printf("%s, %s%n", elementName, comboBox.getSelectedIndex());
 
         // add label and combobox to panel
         add(label);
         add(comboBox);
     }
 
-    protected void databaseConnection() {
+    private void databaseConnection() {
         String url = "jdbc:mysql://localhost:3306";
         String user = "root";
         String password = "secret";
@@ -44,14 +43,24 @@ public class InformationComboBox extends JPanel {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             String message = "\"com.mysql.cj.jdbc.Driver\" is missing.";
-            JOptionPane.showMessageDialog(this, message, "Database Connection", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this,
+                    message,
+                    "Database Connection",
+                    JOptionPane.ERROR_MESSAGE
+            );
             System.exit(1);
         }
         try {
-            connection = DriverManager.getConnection(url, user, password);
+            Connection connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             String message = "Error connecting to database:\n" + e.getMessage();
-            JOptionPane.showMessageDialog(this, message, "Database Connection", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this,
+                    message,
+                    "Database Connection",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 }

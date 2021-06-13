@@ -3,7 +3,7 @@ package com.company.View.Dialogs.Orders;
 import javax.swing.table.AbstractTableModel;
 import java.sql.*;
 
-public class OrdersDialogModel extends AbstractTableModel {
+public class TableModel extends AbstractTableModel {
     protected static Connection connection;
     protected static Statement statement;
     protected static ResultSet resultSet;
@@ -13,7 +13,7 @@ public class OrdersDialogModel extends AbstractTableModel {
     protected static String[] columnNames = {"order_id", "customer_id", "inventory_id", "quantity", "price"};
     protected static String[] informationElements = {"ID", "Customer", "Category", "Description", "Price"};
 
-    public OrdersDialogModel() {
+    public TableModel() {
         String url = "jdbc:mysql://localhost:3306";
         String user = "root";
         String password = "secret";
