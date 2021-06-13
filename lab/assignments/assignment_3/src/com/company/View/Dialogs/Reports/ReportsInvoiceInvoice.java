@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ReportsInvoiceInvoice extends BaseDialog {
+    private UniversalComboBox informationCustomers;
+
     public ReportsInvoiceInvoice() {
         super(new Dimension(309, 99));
         databaseConnection();
@@ -18,7 +20,7 @@ public class ReportsInvoiceInvoice extends BaseDialog {
         JPanel panel = new JPanel(new GridLayout(2, 1));
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton button = new JButton("Print");
-        UniversalComboBox informationCustomers = new UniversalComboBox(
+        informationCustomers = new UniversalComboBox(
                 "Invoice for customer:",
                 new ReportsComboModelCustomers(connection)
         );
@@ -37,6 +39,32 @@ public class ReportsInvoiceInvoice extends BaseDialog {
         setTitle("Print Invoice");
 
         // set button actions
-        button.addActionListener(l -> System.out.println(informationCustomers.getSelectedItem()));
+        button.addActionListener(l -> printInvoice());
+    }
+
+    private void printInvoice() {
+        String[] customerText = informationCustomers.getSelectedItemIndex();
+        String customerID = customerText[2];
+        String customerLastName = customerText[0];
+        String customerFirstName = customerText[1];
+        System.out.printf("For Customer ID: %s%n", customerID);
+        System.out.printf(" Customer Name: %s %s%n", customerLastName, customerFirstName);
+        for (int i = 0; i < 84; i++)
+            System.out.print("=");
+        System.out.println();
+        System.out.printf(
+                "%5s %-20s%-20s%-20s%-20s\n",
+                "Order",
+                "Category",
+                "Description",
+                "Quantity",
+                "Price"
+        );
+        for (int i = 0; i < 84; i++)
+            System.out.print("=");
+        System.out.println();
+        for (int i = 0; i < 84; i++)
+            System.out.print("=");
+        System.out.println();
     }
 }
