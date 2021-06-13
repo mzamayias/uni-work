@@ -5,6 +5,7 @@ import com.company.View.Dialogs.InformationComboBox;
 import com.company.View.Dialogs.InformationTextField;
 
 import javax.swing.*;
+import javax.swing.text.FlowView;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,8 +20,12 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
 
     private void prepareBaseDialog() {
         // initialize and declare objects
-        JPanel upperPanel = new JPanel(new GridLayout(5, 1));
+        JPanel upperPanel = new JPanel(new GridLayout(6, 1));
         JPanel lowerPanel = new JPanel(new FlowLayout());
+        JPanel upperButtonsPanel = new JPanel(new GridLayout(1,2));
+        JButton buttonAddLine = new JButton("Add Line");
+        JButton buttonDeleteLine = new JButton("Delete line");
+        JButton buttonExit = new JButton("Exit");
         JTable table = new JTable(new OrdersDialogModel());
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, upperPanel, lowerPanel);
         JScrollPane scrollPane = new JScrollPane(table);
@@ -66,11 +71,22 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
             upperPanel.add(informationTextField);
         }
 
-        // add scroll pane in lower panel
-        lowerPanel.add(scrollPane);
+        // add upper buttons to their panel
+        upperButtonsPanel.add(buttonAddLine);
+        upperButtonsPanel.add(buttonDeleteLine);
 
-        // add split pane in dialog
+        // add upper buttons panel to the upper panel
+        upperPanel.add(upperButtonsPanel);
+
+        // add scroll pane and exit button to lower panel
+        lowerPanel.add(scrollPane);
+        lowerPanel.add(buttonExit, FlowLayout.LEFT);
+
+        // add split pane to dialog
         add(splitPane);
+
+        // add exit button to dialog
+        add(buttonExit, BorderLayout.SOUTH);
 
         // set dialog preferences
         pack();
