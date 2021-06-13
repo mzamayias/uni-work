@@ -19,17 +19,41 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
 
     private void prepareBaseDialog() {
         // initialize and declare objects
+        String[] customerColumnNames = {
+                "customer_id",
+                "last_name",
+                "first_name",
+                "trn",
+                "phone_number"
+        };
+        String customerQuery = "SELECT * FROM inventory_logistics.customers";
+        String[] inventoryColumnNames = {
+                "inventory_id",
+                "category",
+                "description",
+                "price",
+                "quantity"
+        };
+        String inventoryQuery = "SELECT * FROM inventory_logistics.inventory";
         JPanel upperPanel = new JPanel(new GridLayout(6, 1));
         JPanel lowerPanel = new JPanel(new FlowLayout());
-        JPanel upperButtonsPanel = new JPanel(new GridLayout(1,2));
+        JPanel upperButtonsPanel = new JPanel(new GridLayout(1, 2));
         JButton buttonAddLine = new JButton("Add Line");
         JButton buttonDeleteLine = new JButton("Delete line");
         JButton buttonExit = new JButton("Exit");
         JTable table = new JTable(new OrdersDialogModel());
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, upperPanel, lowerPanel);
         JScrollPane scrollPane = new JScrollPane(table);
-        InformationComboBox informationCustomer = new InformationComboBox("Customer:");
-        InformationComboBox informationInventoryItem = new InformationComboBox("Inventory Item:");
+        InformationComboBox informationCustomer = new InformationComboBox(
+                "Customer:",
+                customerQuery,
+                customerColumnNames
+        );
+        InformationComboBox informationInventoryItem = new InformationComboBox(
+                "Inventory Item:",
+                inventoryQuery,
+                inventoryColumnNames
+        );
         InformationTextField informationItemPrice = new InformationTextField("Item Price:");
         InformationTextField informationQuantity = new InformationTextField("Quantity:");
         InformationTextField InformationTotalPrice = new InformationTextField("Total Price:");
