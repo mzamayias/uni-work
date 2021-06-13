@@ -29,11 +29,11 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
         JScrollPane scrollPane = new JScrollPane(table);
         UniversalComboBox informationCustomers = new UniversalComboBox(
                 "Customer:",
-                new CustomerComboModel(connection)
+                new OrdersComboModelCustomers(connection)
         );
         UniversalComboBox informationInventoryItem = new UniversalComboBox(
                 "Inventory Item:",
-                new InventoryComboModel(connection)
+                new OrdersComboModelInventory(connection)
         );
         InformationTextField informationItemPrice = new InformationTextField("Item Price:");
         InformationTextField informationQuantity = new InformationTextField("Quantity:");

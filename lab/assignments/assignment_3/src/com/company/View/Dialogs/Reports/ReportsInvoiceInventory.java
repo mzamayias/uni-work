@@ -1,7 +1,7 @@
 package com.company.View.Dialogs.Reports;
 
 import com.company.View.Dialogs.BaseDialog;
-import com.company.View.Dialogs.Orders.CustomerComboModel;
+import com.company.View.Dialogs.Orders.OrdersComboModelCustomers;
 import com.company.View.Dialogs.UniversalComboBox;
 
 import javax.swing.*;
@@ -21,8 +21,8 @@ public class ReportsInvoiceInventory extends BaseDialog {
         // initialize and declare objects
         JPanel backPanel = new JPanel(new FlowLayout());
         UniversalComboBox informationCustomers = new UniversalComboBox(
-                "Customer:",
-                new CustomerComboModel(connection)
+                "Invoice for customer:",
+                new ReportsComboModelCustomers(connection)
         );
 
         // add panel to base dialog

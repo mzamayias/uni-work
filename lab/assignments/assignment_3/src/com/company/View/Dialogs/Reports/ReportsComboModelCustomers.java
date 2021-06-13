@@ -1,4 +1,4 @@
-package com.company.View.Dialogs.Orders;
+package com.company.View.Dialogs.Reports;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -6,18 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class InventoryComboModel extends DefaultComboBoxModel<String> {
+public class ReportsComboModelCustomers extends DefaultComboBoxModel<String> {
     private ResultSet resultSet;
 
-    public InventoryComboModel(Connection connection) {
+    public ReportsComboModelCustomers(Connection connection) {
         try {
             Statement statement = connection.createStatement(
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE
             );
-            resultSet = statement.executeQuery("SELECT * FROM inventory_logistics.inventory;");
+            resultSet = statement.executeQuery("SELECT * FROM inventory_logistics.customers;");
         } catch (SQLException e) {
-            System.out.println("error querying customers table in InventoryComboModel");
+            System.out.println("error querying customers table in CustomerComboModel");
             e.printStackTrace();
         }
     }
@@ -27,16 +27,13 @@ public class InventoryComboModel extends DefaultComboBoxModel<String> {
         String line = null;
         try {
             resultSet.absolute(index + 1);
-            line = "%s, %s, %s, %s".formatted(
-                    resultSet.getString("category"),
-                    resultSet.getString("description"),
-                    resultSet.getString("quantity"),
-                    resultSet.getString("price")
+            line = "%s, %s, %s".formatted(
+                    resultSet.getString("last_name"),
+                    resultSet.getString("first_name"),
+                    resultSet.getString("customer_id")
             );
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            System.out.println(line);
         }
         return line;
     }
@@ -48,7 +45,7 @@ public class InventoryComboModel extends DefaultComboBoxModel<String> {
             resultSet.last();
             counter = resultSet.getRow();
         } catch (SQLException e) {
-            System.out.println("error counting in InventoryComboModel");
+            System.out.println("error counting in CustomerComboModel");
             e.printStackTrace();
         }
         return counter;
