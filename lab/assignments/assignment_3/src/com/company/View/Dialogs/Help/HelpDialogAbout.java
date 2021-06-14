@@ -1,43 +1,39 @@
 package com.company.View.Dialogs.Help;
 
 import com.company.View.Dialogs.BaseDialog;
+import com.company.View.Dialogs.InformationTextField;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class HelpDialogAbout extends BaseDialog {
     public HelpDialogAbout() {
-        JPanel jPanel = new JPanel();
-        JLabel[] labelsAuthor = {
-                new JLabel("Application Author:"),
-                new JLabel("Mike Zamayias")
-        };
-        JLabel[] labelsVersion = {
-                new JLabel("Application Version:"),
-                new JLabel("Under Development")
-        };
-        JLabel[] labelsReach = {
-                new JLabel("GitHub:"),
-                new JLabel("@mzamayias")
+        JPanel panel = new JPanel(new GridLayout(3, 1));
+        InformationTextField informationAppAuthor = new InformationTextField(
+                "Application Author:",
+                "Mike Zamayias"
+        );
+        InformationTextField informationAppVersion = new InformationTextField(
+                "Application Version:",
+                "Beta"
+        );
+        InformationTextField informationSocial = new InformationTextField(
+                "GitHub:",
+                "@mzamayias"
+        );
+        InformationTextField[] informationTextFields = {
+                informationAppAuthor, informationAppVersion, informationSocial
         };
 
-        jPanel.setLayout(new GridLayout(3, 2));
-        for (JLabel jLabel : labelsAuthor) {
-            jPanel.add(jLabel);
-        }
-        for (JLabel jLabel : labelsVersion) {
-            jPanel.add(jLabel);
-        }
-        for (JLabel jLabel : labelsReach) {
-            jPanel.add(jLabel);
+        for (InformationTextField informationTextField : informationTextFields) {
+            panel.add(informationTextField);
         }
 
-        add(jPanel);
+        add(panel);
 
         setTitle("About");
-        setSize(300, 150);
         setResizable(false);
-        setVisible(true);
         pack();
+        setVisible(true);
     }
 }
