@@ -79,12 +79,12 @@ public class ReportsInvoiceInvoice extends BaseDialog {
     private String getQuery(String customerID) {
         return """
                  SELECT
-                 *
+                          orders.order_id, inventory.category, inventory.description, inventory.quantity, inventory.price
                  FROM inventory_logistics.orders
                           LEFT JOIN inventory_logistics.customers ON customers.customer_id = orders.customer_id
                           LEFT JOIN inventory_logistics.inventory ON inventory.inventory_id = orders.inventory_id
                  WHERE
-                          customers.customer_id = %s
+                          customers.customer_id = %s;
                 """.formatted(customerID);
     }
 
