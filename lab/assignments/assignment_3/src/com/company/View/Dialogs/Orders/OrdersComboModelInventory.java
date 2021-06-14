@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static java.lang.Integer.parseInt;
+
 public class OrdersComboModelInventory extends DefaultComboBoxModel<String> {
     private ResultSet resultSet;
 
@@ -28,10 +30,10 @@ public class OrdersComboModelInventory extends DefaultComboBoxModel<String> {
         try {
             resultSet.absolute(index + 1);
             line = "%s, %s, %s, %s".formatted(
-                    resultSet.getString("category"),
-                    resultSet.getString("description"),
-                    resultSet.getString("quantity"),
-                    resultSet.getString("price")
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(1)
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,5 +52,14 @@ public class OrdersComboModelInventory extends DefaultComboBoxModel<String> {
             e.printStackTrace();
         }
         return counter;
+    }
+
+    private void deleteRow(int currentIndex) {
+        try {
+            resultSet.getInt(parseInt(String.valueOf(resultSet.absolute(currentIndex + 1))));
+            resultSet.deleteRow();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

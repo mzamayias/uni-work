@@ -9,8 +9,9 @@ import java.sql.SQLException;
 
 public class UniversalComboBox extends JPanel {
     private final JLabel label = new JLabel();
-    private final JComboBox<String> comboBox = new JComboBox<>();
+    private JComboBox<String> comboBox;
     private Connection connection;
+    public ActionListener l;
 
     public UniversalComboBox(String elementName, DefaultComboBoxModel<String> comboBoxModel) {
         databaseConnection();
@@ -26,7 +27,7 @@ public class UniversalComboBox extends JPanel {
         label.setHorizontalAlignment(SwingConstants.RIGHT);
 
         // combobox preferences
-        comboBox.setModel(comboBoxModel);
+        comboBox = new JComboBox<>(comboBoxModel);
         comboBox.setEditable(false);
         comboBox.setSelectedIndex(0);
 
@@ -64,16 +65,18 @@ public class UniversalComboBox extends JPanel {
         }
     }
 
-    public String[] getSelectedItemIndex() {
-        // jerry rigged, but it works fine
+    public String[] getSelectedItemAsStringArray() {
         return "%s".formatted(comboBox.getSelectedItem()).split(",");
     }
 
-    public Object getSelectedItem() {
-        return comboBox.getSelectedItem();
+    public String getSelectedItemIndex() {
+        // you could argue it's jerry rigged, and i'd say it works just fine
+        String[] array = getSelectedItemAsStringArray();
+        return array[array.length - 1];
     }
 
     public void addActionListener(ActionListener l) {
-        listenerList.add(ActionListener.class, l);
+        // taken from `JComboBox.java`
+        listenerList.add(ActionListener.class,l);
     }
 }

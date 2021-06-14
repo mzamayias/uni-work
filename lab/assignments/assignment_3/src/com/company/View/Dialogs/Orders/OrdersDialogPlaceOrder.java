@@ -6,53 +6,55 @@ import com.company.View.Dialogs.UniversalComboBox;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class OrdersDialogPlaceOrder extends BaseDialog {
-    protected static String[] informationElements = {"Order ID", "Customer", "Category", "Description", "Price"};
-    private final JTable table = new JTable(new TableModel());
-    private UniversalComboBox informationCustomers = new UniversalComboBox(
-            "Customer:",
-            new OrdersComboModelCustomers(connection)
-    );
-    private UniversalComboBox informationInventoryItem = new UniversalComboBox(
-            "Inventory Item:",
-            new OrdersComboModelInventory(connection)
-    );
-    private InformationTextField informationItemPrice = new InformationTextField("Item Price:");
-    private InformationTextField informationQuantity = new InformationTextField("Quantity:");
-    private InformationTextField InformationTotalPrice = new InformationTextField("Total Price:");
-    private UniversalComboBox[] universalComboBoxes = {
-            informationCustomers, informationInventoryItem,
-    };
-    private InformationTextField[] informationTextFields = {
-            informationItemPrice, informationQuantity, InformationTotalPrice
-    };
+    private final String[] informationElements = {"Order ID", "Customer", "Category", "Description", "Price"};
+    private final JButton buttonDeleteLine = new JButton();
+    private final JTable table = new JTable();
+    //    private final JTableHeader tableHeader = new JTableHeader();
+    private final UniversalComboBox informationCustomers;
+    private final UniversalComboBox informationInventoryItem;
+    private final InformationTextField informationItemPrice = new InformationTextField("Item Price:");
+    private final InformationTextField informationQuantity = new InformationTextField("Quantity:");
+    private final InformationTextField InformationTotalPrice = new InformationTextField("Total Price:");
+    private final UniversalComboBox[] universalComboBoxes;
+    private final InformationTextField[] informationTextFields;
 
     public OrdersDialogPlaceOrder() {
         super(new Dimension(480, 510));
         databaseConnection();
+        informationCustomers = new UniversalComboBox(
+                "Customer:", new OrdersComboModelCustomers(connection)
+        );
+        informationInventoryItem = new UniversalComboBox(
+                "Inventory Item:", new OrdersComboModelInventory(connection)
+        );
+        universalComboBoxes = new UniversalComboBox[]{
+                informationCustomers, informationInventoryItem,
+        };
+        informationTextFields = new InformationTextField[]{
+                informationItemPrice, informationQuantity, InformationTotalPrice
+        };
         improveBaseDialog();
     }
 
     private void improveBaseDialog() {
         // initialize and declare objects
-        JPanel upperPanel = new JPanel(new GridLayout(6, 1));
+        JPanel upperPanel = new JPanel(new BorderLayout());
         JPanel lowerPanel = new JPanel(new FlowLayout());
-        JPanel upperButtonsPanel = new JPanel(new GridLayout(1, 2));
+        JPanel upperPanelFields = new JPanel(new GridLayout(5, 1));
+        JPanel upperPanelButtons = new JPanel(new GridLayout(1, 2));
         JButton buttonAddLine = new JButton("Add Line");
-        JButton buttonDeleteLine = new JButton("Delete line");
         JButton buttonExit = new JButton("Exit");
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, upperPanel, lowerPanel);
         JScrollPane scrollPane = new JScrollPane(table);
 
-        // set split pane preferences
-        splitPane.setEnabled(false);
-
-        // set table preferences
-        for (int i = 0; i < informationElements.length; i++) {
-            table.getColumnModel().getColumn(i).setHeaderValue(informationElements[i]);
-        }
-        table.setEnabled(false);
+        setTablePreferences();
 
         // make information panels not editable
         for (InformationTextField informationTextField : informationTextFields) {
@@ -61,22 +63,29 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
 
         // add information panels to upper panel
         for (UniversalComboBox universalComboBox : universalComboBoxes) {
-            upperPanel.add(universalComboBox);
+            upperPanelFields.add(universalComboBox);
         }
         for (InformationTextField informationTextField : informationTextFields) {
-            upperPanel.add(informationTextField);
+            upperPanelFields.add(informationTextField);
         }
 
-        // add upper buttons to their panel
-        upperButtonsPanel.add(buttonAddLine);
-        upperButtonsPanel.add(buttonDeleteLine);
+        // set button preferences
+        buttonDeleteLine.setText("Delete Line");
 
-        // add upper buttons panel to the upper panel
-        upperPanel.add(upperButtonsPanel);
+        // add upper buttons to their panel
+        upperPanelButtons.add(buttonAddLine);
+        upperPanelButtons.add(buttonDeleteLine);
+
+        // add upper fields and buttons to their panel
+        upperPanel.add(upperPanelFields, BorderLayout.EAST);
+        upperPanel.add(upperPanelButtons, BorderLayout.SOUTH);
 
         // add scroll pane and exit button to lower panel
         lowerPanel.add(scrollPane);
         lowerPanel.add(buttonExit, FlowLayout.LEFT);
+
+        // set split pane preferences
+        splitPane.setEnabled(false);
 
         // add split pane to dialog
         add(splitPane);
@@ -92,17 +101,44 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
         // set button actions
         buttonExit.addActionListener(l -> setVisible(false));
         buttonAddLine.addActionListener(l -> doAddLine());
-        buttonDeleteLine.addActionListener(l -> doDeleteLine());
-        for (UniversalComboBox universalComboBox : universalComboBoxes) {
-            universalComboBox.addActionListener(l -> System.out.println(universalComboBox.getSelectedItem().toString()));
-        }
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                int row = table.rowAtPoint(evt.getPoint());
+                if (row >= 0) {
+                    String order_index = (String) table.getModel().getValueAt(row, 0);
+                    System.out.printf("Order ID: %s\n", order_index);
+                    buttonDeleteLine.addActionListener(l -> doDeleteLine(order_index));
+                }
+            }
+        });
     }
 
     private void doAddLine() {
         informationQuantity.setEditable(true);
     }
 
-    private void doDeleteLine() {
-        informationQuantity.setEditable(false);
+    private void doDeleteLine(String order_id) {
+        try {
+            String query = "DELETE FROM inventory_logistics.orders WHERE orders.order_id = %s;".formatted(order_id);
+            Statement statement = connection.createStatement(
+                    ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE
+            );
+            int i = statement.executeUpdate(query);
+            System.out.println(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        setTablePreferences();
+    }
+
+    private void setTablePreferences() {
+        // set table preferences
+        table.setModel(new TableModel());
+        // change table headers
+        for (int i = 0; i < informationElements.length; i++) {
+            table.getColumnModel().getColumn(i).setHeaderValue(informationElements[i]);
+        }
+        table.setEnabled(true);
     }
 }

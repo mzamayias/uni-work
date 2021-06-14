@@ -47,7 +47,7 @@ public class ReportsInvoiceInvoice extends BaseDialog {
     }
 
     private void printInvoice() {
-        String[] customerText = informationCustomers.getSelectedItemIndex();
+        String[] customerText = informationCustomers.getSelectedItemAsStringArray();
         String customerID = customerText[2];
         String customerLastName = customerText[0];
         String customerFirstName = customerText[1];

@@ -27,11 +27,10 @@ public class OrdersComboModelCustomers extends DefaultComboBoxModel<String> {
         String line = null;
         try {
             resultSet.absolute(index + 1);
-            line = "%s, %s, %s, %s".formatted(
-                    resultSet.getString("last_name"),
-                    resultSet.getString("first_name"),
-                    resultSet.getString("trn"),
-                    resultSet.getString("phone_number")
+            line = "%s, %s, %s".formatted(
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(1)
             );
         } catch (SQLException e) {
             e.printStackTrace();
