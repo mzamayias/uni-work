@@ -7,7 +7,7 @@ CREATE TABLE customers
     customer_id  int(11) NOT NULL AUTO_INCREMENT,
     last_name    varchar(45) DEFAULT NULL,
     first_name   varchar(45) DEFAULT NULL,
-    trn          int(11)     DEFAULT NULL,
+    trn          varchar(45) DEFAULT NULL,
     phone_number varchar(45) DEFAULT NULL,
     PRIMARY KEY (customer_id),
     UNIQUE KEY idCustomer_UNIQUE (customer_id)
@@ -59,8 +59,8 @@ VALUES ('CPU', 'Ryzen 9', 600, 2),
        ('SoC', 'M1', 400, 10);
 INSERT INTO orders (customer_id, inventory_id, quantity, price)
 VALUES (2, 2, 1, 300000),
-       (1, 1, 1, 0),
-       (1, 3, 1, 0),
+       (1, 1, 1, 600),
+       (1, 3, 1, 900),
        (3, 2, 1, 300000),
        (4, 4, 1, 400);
 SET FOREIGN_KEY_CHECKS = 1;
