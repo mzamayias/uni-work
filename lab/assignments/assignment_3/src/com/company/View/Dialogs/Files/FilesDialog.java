@@ -129,6 +129,7 @@ public class FilesDialog extends BaseDialog {
     }
 
     private void doAdd() {
+        informationTextFields[0].setText(null);
         for (int i = 1; i < informationTextFields.length; i++) {
             informationTextFields[i].setEditable(true);
         }
@@ -183,7 +184,9 @@ public class FilesDialog extends BaseDialog {
                 if (action.equals("DELETE")) {
                     resultSet.deleteRow();
                 }
-                doNext();
+                if (action.equals("MODIFY")) {
+                    resultSet.updateRow();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -196,7 +199,7 @@ public class FilesDialog extends BaseDialog {
     private void doDelete() {
         mode = 0;
         currentIndexCheck("DELETE");
-        clearInformation();
+        doPrevious();
         buttonOK.setEnabled(true);
         buttonCancel.setEnabled(true);
     }
