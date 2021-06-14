@@ -48,10 +48,10 @@ CREATE TABLE orders
 
 SET FOREIGN_KEY_CHECKS = 0;
 INSERT INTO customers (last_name, first_name, trn, phone_number)
-VALUES ('Meyas', 'Alex', 000000000, '00000000000'),
-       ('Dodos', 'Totos', 123123123, '1234512345'),
-       ('Norris', 'Chuck', 999999999, '9999999999'),
-       ('Zamayias', 'Mike', 321321321, '5432154321');
+VALUES ('Meyas', 'Alex', '000000000', '00000000000'),
+       ('Dodos', 'Totos', '123123123', '1234512345'),
+       ('Norris', 'Chuck', '999999999', '9999999999'),
+       ('Zamayias', 'Mike', '321321321', '5432154321');
 INSERT INTO inventory (category, description, price, quantity)
 VALUES ('CPU', 'Ryzen 9', 600, 2),
        ('Supercomputer', 'DGX A100', 300000, 1),
