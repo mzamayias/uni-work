@@ -11,6 +11,10 @@ public class InformationTextField extends JPanel {
         prepareElementPanel(elementName);
     }
 
+    public InformationTextField(String elementName, String elementText) {
+        prepareElementPanel(elementName, elementText);
+    }
+
     private void prepareElementPanel(String elementName) {
         setLayout(new GridLayout(1, 2));
 
@@ -19,6 +23,18 @@ public class InformationTextField extends JPanel {
         add(label);
 
         textField.setPreferredSize(new Dimension(270, 15));
+        add(textField);
+    }
+
+    private void prepareElementPanel(String elementName, String elementText) {
+        setLayout(new GridLayout(1, 2));
+
+        label.setText(elementName);
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
+        add(label);
+
+        textField.setPreferredSize(new Dimension(270, 15));
+        textField.setText(elementText);
         add(textField);
     }
 
