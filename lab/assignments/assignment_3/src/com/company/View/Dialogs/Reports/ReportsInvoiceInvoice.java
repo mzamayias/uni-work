@@ -12,9 +12,6 @@ import java.sql.Statement;
 public class ReportsInvoiceInvoice extends BaseDialog {
     private UniversalComboBox informationCustomers;
     private ResultSet resultSet = null;
-    protected static String[] tableColumns = {
-            "orders.order_id", "inventory.category", "inventory.description", "inventory.quantity", "inventory.price"
-    };
 
     public ReportsInvoiceInvoice() {
         super(new Dimension(309, 99));
