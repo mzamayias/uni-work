@@ -57,7 +57,7 @@ CREATE TABLE `inventory` (
   `price` int DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   PRIMARY KEY (`inventory_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES (4,'SoC','M1',400,10),(5,'CPU','Ryzen 9 Zen3+',900,5),(7,'Supercomputer','DGX A100',300000,1);
+INSERT INTO `inventory` VALUES (4,'SoC','M1',400,10),(5,'RAM','8GB DDR4',80,100),(7,'Supercomputer','DGX A100',300000,1),(9,'CPU','Core i3',120,100),(10,'SSD','870 Evo',65,100);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `orders` (
   KEY `fk_inventory_idx` (`inventory_id`),
   CONSTRAINT `fk_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_inventory` FOREIGN KEY (`inventory_id`) REFERENCES `inventory` (`inventory_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (6,4,4,2,800),(7,4,7,1,300000);
+INSERT INTO `orders` VALUES (6,4,4,2,800),(7,4,7,1,300000),(8,2,7,1,300000),(9,2,5,50,4000),(10,2,9,50,6000),(11,2,10,50,3250);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -111,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-14 22:39:46
+-- Dump completed on 2021-06-14 22:47:14
