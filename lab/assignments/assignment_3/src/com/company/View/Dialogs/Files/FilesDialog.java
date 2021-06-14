@@ -183,9 +183,9 @@ public class FilesDialog extends BaseDialog {
                 if (action.equals("DELETE")) {
                     resultSet.deleteRow();
                 }
-                showInformation();
+                doNext();
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
+                e.printStackTrace();
             }
         }
         for (int i = 1; i < informationTextFields.length; i++) {

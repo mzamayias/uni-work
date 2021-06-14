@@ -16,7 +16,6 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
     private final String[] informationElements = {"Order ID", "Customer", "Category", "Description", "Price"};
     private final JButton buttonDeleteLine = new JButton();
     private final JTable table = new JTable();
-    //    private final JTableHeader tableHeader = new JTableHeader();
     private final UniversalComboBox informationCustomers;
     private final UniversalComboBox informationInventoryItem;
     private final InformationTextField informationItemPrice = new InformationTextField("Item Price:");
