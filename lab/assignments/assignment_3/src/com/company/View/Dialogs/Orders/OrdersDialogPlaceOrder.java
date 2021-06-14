@@ -9,6 +9,24 @@ import java.awt.*;
 
 public class OrdersDialogPlaceOrder extends BaseDialog {
     protected static String[] informationElements = {"Order ID", "Customer", "Category", "Description", "Price"};
+    private final JTable table = new JTable(new TableModel());
+    private UniversalComboBox informationCustomers = new UniversalComboBox(
+            "Customer:",
+            new OrdersComboModelCustomers(connection)
+    );
+    private UniversalComboBox informationInventoryItem = new UniversalComboBox(
+            "Inventory Item:",
+            new OrdersComboModelInventory(connection)
+    );
+    private InformationTextField informationItemPrice = new InformationTextField("Item Price:");
+    private InformationTextField informationQuantity = new InformationTextField("Quantity:");
+    private InformationTextField InformationTotalPrice = new InformationTextField("Total Price:");
+    private UniversalComboBox[] universalComboBoxes = {
+            informationCustomers, informationInventoryItem,
+    };
+    private InformationTextField[] informationTextFields = {
+            informationItemPrice, informationQuantity, InformationTotalPrice
+    };
 
     public OrdersDialogPlaceOrder() {
         super(new Dimension(480, 510));
@@ -24,26 +42,8 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
         JButton buttonAddLine = new JButton("Add Line");
         JButton buttonDeleteLine = new JButton("Delete line");
         JButton buttonExit = new JButton("Exit");
-        JTable table = new JTable(new TableModel());
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, upperPanel, lowerPanel);
         JScrollPane scrollPane = new JScrollPane(table);
-        UniversalComboBox informationCustomers = new UniversalComboBox(
-                "Customer:",
-                new OrdersComboModelCustomers(connection)
-        );
-        UniversalComboBox informationInventoryItem = new UniversalComboBox(
-                "Inventory Item:",
-                new OrdersComboModelInventory(connection)
-        );
-        InformationTextField informationItemPrice = new InformationTextField("Item Price:");
-        InformationTextField informationQuantity = new InformationTextField("Quantity:");
-        InformationTextField InformationTotalPrice = new InformationTextField("Total Price:");
-        UniversalComboBox[] universalComboBoxes = {
-                informationCustomers, informationInventoryItem,
-        };
-        InformationTextField[] informationTextFields = {
-                informationItemPrice, informationQuantity, InformationTotalPrice
-        };
 
         // set split pane preferences
         splitPane.setEnabled(false);
@@ -91,5 +91,18 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
 
         // set button actions
         buttonExit.addActionListener(l -> setVisible(false));
+        buttonAddLine.addActionListener(l -> doAddLine());
+        buttonDeleteLine.addActionListener(l -> doDeleteLine());
+        for (UniversalComboBox universalComboBox : universalComboBoxes) {
+            universalComboBox.addActionListener(l -> System.out.println(universalComboBox.getSelectedItem().toString()));
+        }
+    }
+
+    private void doAddLine() {
+        informationQuantity.setEditable(true);
+    }
+
+    private void doDeleteLine() {
+        informationQuantity.setEditable(false);
     }
 }
