@@ -2,7 +2,6 @@ CREATE DATABASE IF NOT EXISTS `inventory_logistics` DEFAULT CHARACTER SET utf8;
 USE `inventory_logistics`;
 
 DROP TABLE IF EXISTS `customers`;
-
 CREATE TABLE `customers`
 (
     `customer_id`  int(11) NOT NULL AUTO_INCREMENT,
@@ -17,7 +16,6 @@ CREATE TABLE `customers`
   DEFAULT CHARSET = utf8;
 
 DROP TABLE IF EXISTS `inventory`;
-
 CREATE TABLE `inventory`
 (
     `inventory_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -31,7 +29,6 @@ CREATE TABLE `inventory`
   DEFAULT CHARSET = utf8;
 
 DROP TABLE IF EXISTS `orders`;
-
 CREATE TABLE `orders`
 (
     `order_id`     int(11) NOT NULL AUTO_INCREMENT,
@@ -55,23 +52,11 @@ VALUES ('Meyas', 'Alex', '000000000', '00000000000'),
        ('Dodos', 'Totos', '123123123', '1234512345'),
        ('Norris', 'Chuck', '999999999', '9999999999'),
        ('Zamayias', 'Mike', '321321321', '5432154321');
-SET FOREIGN_KEY_CHECKS = 1;
-
-SELECT *
-FROM customers;
-
-SET FOREIGN_KEY_CHECKS = 0;
 INSERT INTO inventory (category, description, price, quantity)
 VALUES ('CPU', 'Ryzen 9', 600, 2),
        ('Supercomputer', 'DGX A100', 300000, 1),
        ('GPU', '3060 Ti', 700, 3),
        ('SoC', 'M1', 400, 10);
-SET FOREIGN_KEY_CHECKS = 1;
-
-SELECT *
-FROM inventory;
-
-SET FOREIGN_KEY_CHECKS = 0;
 INSERT INTO orders (customer_id, inventory_id, quantity, price)
 VALUES (2, 2, 1, 300000),
        (1, 1, 1, 0),
@@ -81,9 +66,8 @@ VALUES (2, 2, 1, 300000),
 SET FOREIGN_KEY_CHECKS = 1;
 
 SELECT *
+FROM customers;
+SELECT *
+FROM inventory;
+SELECT *
 FROM orders;
-
-SELECT orders.order_id, customers.last_name, inventory.category, inventory.description, inventory.price
-FROM inventory_logistics.orders
-         LEFT JOIN inventory_logistics.customers ON customers.customer_id = orders.customer_id
-         LEFT JOIN inventory_logistics.inventory ON inventory.inventory_id = orders.inventory_id;
