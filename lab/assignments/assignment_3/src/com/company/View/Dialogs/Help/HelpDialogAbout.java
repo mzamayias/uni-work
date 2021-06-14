@@ -35,7 +35,7 @@ public class HelpDialogAbout extends BaseDialog {
             panel.add(informationTextField);
         }
 
-        add(panel, BorderLayout.PAGE_START);
+        add(panel, BorderLayout.CENTER);
 
         setTitle("About");
         setResizable(false);

@@ -37,7 +37,7 @@ public class ReportsInvoiceInvoice extends BaseDialog {
         panel.add(buttonPanel);
 
         // add panel to dialog
-        add(panel, BorderLayout.PAGE_START);
+        add(panel, BorderLayout.CENTER);
 
         // base dialog preferences
         setTitle("Print Invoice");
