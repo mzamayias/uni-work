@@ -2,6 +2,7 @@ package com.company.View.Dialogs;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -66,5 +67,13 @@ public class UniversalComboBox extends JPanel {
     public String[] getSelectedItemIndex() {
         // jerry rigged, but it works fine
         return "%s".formatted(comboBox.getSelectedItem()).split(",");
+    }
+
+    public Object getSelectedItem() {
+        return comboBox.getSelectedItem();
+    }
+
+    public void addActionListener(ActionListener l) {
+        listenerList.add(ActionListener.class, l);
     }
 }
