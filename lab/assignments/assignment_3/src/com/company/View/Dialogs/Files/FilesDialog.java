@@ -199,7 +199,7 @@ public class FilesDialog extends BaseDialog {
     private void doDelete() {
         mode = 0;
         currentIndexCheck("DELETE");
-        doPrevious();
+        clearInformation();
         buttonOK.setEnabled(true);
         buttonCancel.setEnabled(true);
     }
