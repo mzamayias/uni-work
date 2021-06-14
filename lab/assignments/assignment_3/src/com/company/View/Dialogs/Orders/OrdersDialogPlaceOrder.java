@@ -123,7 +123,7 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
             Statement statement = connection.createStatement(
                     ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE
             );
-            int i = statement.executeUpdate(query);
+            statement.executeUpdate(query);
             System.out.println(query);
         } catch (SQLException e) {
             e.printStackTrace();
