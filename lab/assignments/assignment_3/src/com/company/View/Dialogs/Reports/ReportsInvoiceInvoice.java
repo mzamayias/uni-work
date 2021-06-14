@@ -58,7 +58,7 @@ public class ReportsInvoiceInvoice extends BaseDialog {
         System.out.println();
         System.out.printf(
                 "%5s %-20s%-20s%-20s%-20s\n",
-                "Order",
+                "ID",
                 "Category",
                 "Description",
                 "Quantity",
@@ -76,7 +76,7 @@ public class ReportsInvoiceInvoice extends BaseDialog {
     private String getQuery(String customerID) {
         return """
                  SELECT
-                          orders.order_id, inventory.category, inventory.description, orders.quantity, inventory.price
+                          orders.order_id, inventory.category, inventory.description, orders.quantity, orders.price
                  FROM inventory_logistics.orders
                           LEFT JOIN inventory_logistics.customers ON customers.customer_id = orders.customer_id
                           LEFT JOIN inventory_logistics.inventory ON inventory.inventory_id = orders.inventory_id

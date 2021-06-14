@@ -19,10 +19,11 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
     private final UniversalComboBox informationCustomers;
     private final UniversalComboBox informationInventoryItem;
     private final InformationTextField informationItemPrice = new InformationTextField("Item Price:");
-    private final InformationTextField informationQuantity = new InformationTextField("Quantity:");
-    private final InformationTextField InformationTotalPrice = new InformationTextField("Total Price:");
+    private final InformationTextField informationQuantity = new InformationTextField("Quantity:", "1");
+    private final InformationTextField informationTotalPrice = new InformationTextField("Total Price:");
     private final UniversalComboBox[] universalComboBoxes;
     private final InformationTextField[] informationTextFields;
+    private final int defaultQuantity = 1;
 
     public OrdersDialogPlaceOrder() {
         super(new Dimension(480, 510));
@@ -37,7 +38,7 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
                 informationCustomers, informationInventoryItem,
         };
         informationTextFields = new InformationTextField[]{
-                informationItemPrice, informationQuantity, InformationTotalPrice
+                informationItemPrice, informationQuantity, informationTotalPrice
         };
         improveBaseDialog();
     }
@@ -55,10 +56,13 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
 
         setTablePreferences();
 
-        // make information panels not editable
-        for (InformationTextField informationTextField : informationTextFields) {
-            informationTextField.setEditable(false);
-        }
+        // set information panel preferences
+        informationInventoryItem.doAddActionListener(
+                l -> updateInformationItemPrice(informationInventoryItem.getSelectedItemIndex())
+        );
+        informationQuantity.setEditable(true);
+        informationItemPrice.setEditable(false);
+        informationTotalPrice.setEditable(false);
 
         // add information panels to upper panel
         for (UniversalComboBox universalComboBox : universalComboBoxes) {
@@ -114,7 +118,26 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
     }
 
     private void doAddLine() {
-        informationQuantity.setEditable(true);
+        int inventory_id = Integer.parseInt(informationInventoryItem.getSelectedItemIndex());
+        int customer_id = Integer.parseInt(informationCustomers.getSelectedItemIndex());
+        int quantity = Integer.parseInt(informationQuantity.getText());
+        int price = Integer.parseInt(informationItemPrice.getText());
+        int total_price = quantity * price;
+        informationTotalPrice.setText(String.valueOf(total_price));
+        try {
+            String query = """
+                    INSERT INTO inventory_logistics.orders (customer_id, inventory_id, quantity, price)
+                    VALUES (%s, %s, %s, %s);
+                    """.formatted(customer_id, inventory_id, quantity, total_price);
+            Statement statement = connection.createStatement(
+                    ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE
+            );
+            statement.executeUpdate(query);
+            System.out.println(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        setTablePreferences();
     }
 
     private void doDeleteLine(String order_id) {
@@ -139,5 +162,26 @@ public class OrdersDialogPlaceOrder extends BaseDialog {
             table.getColumnModel().getColumn(i).setHeaderValue(informationElements[i]);
         }
         table.setEnabled(true);
+    }
+
+    public void updateInformationItemPrice(String inventory_id) {
+        try {
+            Statement statement = connection.createStatement(
+                    ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE
+            );
+            ResultSet resultSet = statement.executeQuery(
+                    "SELECT inventory.price FROM inventory_logistics.inventory WHERE inventory_id = %s;".formatted(inventory_id)
+            );
+            if (resultSet.next()) {
+                informationQuantity.setText(String.valueOf(defaultQuantity));
+                informationItemPrice.setText(String.valueOf(resultSet.getInt("price")));
+                informationTotalPrice.setText(String.valueOf(
+                        Integer.parseInt(informationQuantity.getText()) * Integer.parseInt(informationItemPrice.getText())
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("error in `updateInformationItemPrice()`");
+            e.printStackTrace();
+        }
     }
 }

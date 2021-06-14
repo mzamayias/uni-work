@@ -14,7 +14,7 @@ public class TableModel extends AbstractTableModel {
                      LEFT JOIN inventory_logistics.inventory ON inventory.inventory_id = orders.inventory_id
                      """;
     protected static String[] columnNames = {
-            "orders.order_id", "customers.last_name", "inventory.category", "inventory.description", "inventory.price"
+            "orders.order_id", "customers.last_name", "inventory.category", "inventory.description", "orders.price"
     };
 
     public TableModel() {

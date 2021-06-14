@@ -12,6 +12,7 @@ public class UniversalComboBox extends JPanel {
     private JComboBox<String> comboBox;
     private Connection connection;
     public ActionListener l;
+    private String rowIndex;
 
     public UniversalComboBox(String elementName, DefaultComboBoxModel<String> comboBoxModel) {
         databaseConnection();
@@ -34,6 +35,8 @@ public class UniversalComboBox extends JPanel {
         // add label and combobox to panel
         add(label);
         add(comboBox);
+
+//        comboBox.addActionListener(l -> System.out.println(getSelectedItemIndex()));
     }
 
     private void databaseConnection() {
@@ -66,7 +69,7 @@ public class UniversalComboBox extends JPanel {
     }
 
     public String[] getSelectedItemAsStringArray() {
-        return "%s".formatted(comboBox.getSelectedItem()).split(",");
+        return "%s".formatted(comboBox.getSelectedItem()).split(", ");
     }
 
     public String getSelectedItemIndex() {
@@ -75,8 +78,8 @@ public class UniversalComboBox extends JPanel {
         return array[array.length - 1];
     }
 
-    public void addActionListener(ActionListener l) {
+    public void doAddActionListener(ActionListener l) {
         // taken from `JComboBox.java`
-        listenerList.add(ActionListener.class,l);
+        comboBox.addActionListener(l);
     }
 }
