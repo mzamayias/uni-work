@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class HelpDialogAbout extends BaseDialog {
     public HelpDialogAbout() {
-        super(new Dimension(300, 90));
+        super(new Dimension(330, 120));
         improveBaseDialog();
     }
 
@@ -35,7 +35,7 @@ public class HelpDialogAbout extends BaseDialog {
             panel.add(informationTextField);
         }
 
-        add(panel);
+        add(panel, BorderLayout.PAGE_START);
 
         setTitle("About");
         setResizable(false);

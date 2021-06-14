@@ -14,7 +14,7 @@ public class ReportsInvoiceInvoice extends BaseDialog {
     private ResultSet resultSet = null;
 
     public ReportsInvoiceInvoice() {
-        super(new Dimension(309, 99));
+        super(new Dimension(360, 99));
         databaseConnection();
         improveBaseDialog();
     }
@@ -37,7 +37,7 @@ public class ReportsInvoiceInvoice extends BaseDialog {
         panel.add(buttonPanel);
 
         // add panel to dialog
-        add(panel);
+        add(panel, BorderLayout.PAGE_START);
 
         // base dialog preferences
         setTitle("Print Invoice");
