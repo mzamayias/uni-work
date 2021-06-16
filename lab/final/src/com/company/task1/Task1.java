@@ -23,6 +23,7 @@ public class Task1 {
 
     private void createGUI() {
         setFramePreferences();
+        textArea.setEditable(false);
         panel.add(textArea, BorderLayout.CENTER);
         panel.add(comboBox, BorderLayout.NORTH);
         frame.add(panel);
@@ -30,6 +31,8 @@ public class Task1 {
 
     private void setFramePreferences() {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(270,150));
+        frame.setResizable(false);
         frame.setVisible(true);
         frame.pack();
     }
