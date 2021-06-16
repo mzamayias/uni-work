@@ -8,7 +8,7 @@ import java.awt.*;
 public class Task2 {
     Frame frame = new Frame();
     JPanel panel = new JPanel(new BorderLayout());
-    JSlider slider = new JSlider(JSlider.VERTICAL, 0,255,243);
+    JSlider slider = new JSlider(JSlider.VERTICAL, 0, 255, 127);
 
     public Task2() {
         createGUI();
@@ -25,7 +25,6 @@ public class Task2 {
         slider.setMinorTickSpacing(15);
         slider.setMajorTickSpacing(50);
         slider.setPaintTicks(true);
-//        slider.setPaintLabels(true);
     }
 
     private void changePanelColor() {

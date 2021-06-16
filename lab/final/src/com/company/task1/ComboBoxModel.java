@@ -20,7 +20,7 @@ public class ComboBoxModel extends DefaultComboBoxModel<String> {
             );
             resultSet = statement.executeQuery("SELECT address_id, district, address FROM sakila.address ORDER BY district;");
         } catch (SQLException e) {
-            System.out.println("error querying customers table in ComboBoxModel");
+            System.out.println("Error querying address table in ComboBoxModel");
             e.printStackTrace();
         }
     }
@@ -48,7 +48,7 @@ public class ComboBoxModel extends DefaultComboBoxModel<String> {
             resultSet.last();
             counter = resultSet.getRow();
         } catch (SQLException e) {
-            System.out.println("error counting in ComboBoxModel");
+            System.out.println("Error counting in ComboBoxModel");
             e.printStackTrace();
         }
         return counter;

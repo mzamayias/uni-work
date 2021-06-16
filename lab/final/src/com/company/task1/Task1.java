@@ -6,7 +6,7 @@ import java.awt.*;
 public class Task1 {
     JFrame frame = new JFrame();
     JPanel panel = new JPanel(new BorderLayout());
-    ComboBox comboBox = new ComboBox(new ComboBoxModel());
+    JComboBox<String> comboBox = new JComboBox<>(new ComboBoxModel());
     JTextArea textArea = new JTextArea();
 
     public Task1() {
