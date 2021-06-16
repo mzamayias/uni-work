@@ -15,8 +15,18 @@ public class Task2 {
     }
 
     private void createGUI() {
+        setSliderPreferences();
         panel.add(slider, BorderLayout.EAST);
         frame.add(panel);
     }
 
+    private void setSliderPreferences() {
+        slider.setOrientation(JSlider.VERTICAL);
+        slider.setMinimum(0);
+        slider.setMaximum(255);
+        slider.setMajorTickSpacing(10);
+        slider.setMinorTickSpacing(1);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+    }
 }
