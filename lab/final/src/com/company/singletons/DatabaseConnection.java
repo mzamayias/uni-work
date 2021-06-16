@@ -21,7 +21,18 @@ public class DatabaseConnection {
         }
     }
 
-    public static Connection getConnection(){
+    public static Connection getConnection() {
         return connection;
+    }
+
+    public static void closeDatabaseConnection() {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+        System.out.println("Goodbye!");
     }
 }
