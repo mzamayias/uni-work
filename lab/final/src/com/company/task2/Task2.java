@@ -8,10 +8,11 @@ import java.awt.*;
 public class Task2 {
     Frame frame = new Frame();
     JPanel panel = new JPanel(new BorderLayout());
-    JSlider slider = new JSlider();
+    JSlider slider = new JSlider(JSlider.VERTICAL, 0,255,243);
 
     public Task2() {
         createGUI();
+        changePanelColor();
     }
 
     private void createGUI() {
@@ -21,12 +22,18 @@ public class Task2 {
     }
 
     private void setSliderPreferences() {
-        slider.setOrientation(JSlider.VERTICAL);
-        slider.setMinimum(0);
-        slider.setMaximum(255);
-        slider.setMajorTickSpacing(10);
-        slider.setMinorTickSpacing(1);
+        slider.setMinorTickSpacing(15);
+        slider.setMajorTickSpacing(50);
         slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
+//        slider.setPaintLabels(true);
+    }
+
+    private void changePanelColor() {
+        slider.addChangeListener(l -> {
+            if (!slider.getValueIsAdjusting()) {
+                int value = slider.getValue();
+                panel.setBackground(new Color(value, value, value));
+            }
+        });
     }
 }
