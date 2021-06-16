@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/mzamayias/Documents/Repositories/uni-work/lab/final/src</OriginalElement>
+  <nodes>
+    <node x="28.0" y="216.0">com.company.Main</node>
+    <node x="0.0" y="0.0">com.company.singletons.DatabaseConnection</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.company.Main" target="com.company.singletons.DatabaseConnection" relationship="DEPENDENCY">
+      <point x="0.0" y="-38.5" />
+      <point x="0.0" y="83.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="106.0" y="146.5" />
+  <SelectedNodes>
+    <node>com.company.singletons.DatabaseConnection</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
